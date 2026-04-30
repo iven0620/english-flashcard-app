@@ -19,10 +19,10 @@
     <section id="homeView" class="view is-active" aria-labelledby="homeTitle">
       <div class="intro">
         <div>
-          <p class="eyebrow">今日練習</p>
-          <h2 id="homeTitle">用一張卡片，慢慢記住一個字。</h2>
+          <p id="selectedWordbookName" class="eyebrow">請先選擇單字本</p>
+          <h2 id="homeTitle">選一本單字本，開始今天的練習。</h2>
         </div>
-        <button id="startButton" class="primary-button" type="button">開始練習</button>
+        <button id="startButton" class="primary-button" type="button" disabled>開始練習</button>
       </div>
 
       <section class="stats-grid" aria-label="學習統計">
@@ -42,15 +42,20 @@
 
       <p id="statusMessage" class="status-message" role="status"></p>
 
+      <section class="wordbook-panel" aria-label="單字本列表">
+        <h3>單字本</h3>
+        <div id="wordbookList" class="wordbook-list"></div>
+      </section>
+
       <section class="category-panel" aria-label="分類列表">
-        <h3>分類</h3>
+        <h3>目前單字本分類</h3>
         <div id="categoryList" class="category-list"></div>
       </section>
     </section>
 
     <section id="practiceView" class="view" aria-labelledby="practiceTitle">
       <div class="practice-header">
-        <button id="backHomeButton" class="secondary-button" type="button">回首頁</button>
+        <button id="backHomeButton" class="secondary-button" type="button">返回單字本列表</button>
         <div>
           <p id="cardProgress" class="eyebrow">第 1 張</p>
           <h2 id="practiceTitle">練習單字卡</h2>

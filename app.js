@@ -6,7 +6,9 @@ const MS_PER_DAY = 24 * 60 * 60 * 1000;
 const supabaseClient = createSupabaseClient();
 
 // 集中保存會被改變的狀態，畫面更新時比較好追蹤。
+let wordbooks = [];
 let vocabulary = [];
+let selectedWordbook = null;
 let progress = loadProgress();
 let practiceQueue = [];
 let currentIndex = 0;
@@ -24,6 +26,8 @@ const ratingButtons = document.querySelectorAll("[data-rating]");
 const dueCount = document.querySelector("#dueCount");
 const totalCount = document.querySelector("#totalCount");
 const accuracyRate = document.querySelector("#accuracyRate");
+const selectedWordbookName = document.querySelector("#selectedWordbookName");
+const wordbookList = document.querySelector("#wordbookList");
 const categoryList = document.querySelector("#categoryList");
 const statusMessage = document.querySelector("#statusMessage");
 const cardProgress = document.querySelector("#cardProgress");
@@ -62,36 +66,82 @@ function createSupabaseClient() {
 }
 
 async function initializeApp() {
-  setStatusMessage("單字資料載入中...");
+  setStatusMessage("單字本載入中...");
   startButton.disabled = true;
 
   try {
-    vocabulary = await loadVocabulariesFromSupabase();
-    startButton.disabled = vocabulary.length === 0;
+    wordbooks = await loadWordbooksFromSupabase();
+    vocabulary = [];
+    selectedWordbook = null;
     renderHome();
 
-    if (vocabulary.length === 0) {
-      setStatusMessage("目前沒有單字資料");
+    if (wordbooks.length === 0) {
+      setStatusMessage("目前沒有單字本資料");
       return;
     }
 
     setStatusMessage("");
   } catch (error) {
+    wordbooks = [];
     vocabulary = [];
+    selectedWordbook = null;
     startButton.disabled = true;
     renderHome();
-    setStatusMessage("資料庫連線失敗，請稍後再試", true);
+    setStatusMessage("資料讀取失敗，請稍後再試", true);
   }
 }
 
-async function loadVocabulariesFromSupabase() {
+async function loadWordbooksFromSupabase() {
+  if (!supabaseClient) {
+    throw new Error("Supabase client is not ready.");
+  }
+
+  const { data: wordbookRows, error: wordbookError } = await supabaseClient
+    .from("wordbooks")
+    .select("id, name, description, level, created_at")
+    .order("created_at", { ascending: true });
+
+  if (wordbookError) {
+    throw wordbookError;
+  }
+
+  const wordbooksWithBasicInfo = (wordbookRows || []).map((item) => ({
+    id: String(item.id),
+    name: item.name || "未命名單字本",
+    description: item.description || "尚未提供描述",
+    level: item.level || "未設定",
+    createdAt: item.created_at || "",
+  }));
+
+  // 用 head + count 只取得數量，不下載整份單字資料。
+  return Promise.all(
+    wordbooksWithBasicInfo.map(async (wordbook) => {
+      const { count, error } = await supabaseClient
+        .from("vocabularies")
+        .select("id", { count: "exact", head: true })
+        .eq("wordbook_id", wordbook.id);
+
+      if (error) {
+        throw error;
+      }
+
+      return {
+        ...wordbook,
+        wordCount: count || 0
+      };
+    })
+  );
+}
+
+async function loadVocabulariesFromSupabase(wordbookId) {
   if (!supabaseClient) {
     throw new Error("Supabase client is not ready.");
   }
 
   const { data, error } = await supabaseClient
     .from("vocabularies")
-    .select("id, word, part_of_speech, meaning_zh, example_en, example_zh, category, difficulty, created_at")
+    .select("id, wordbook_id, word, part_of_speech, meaning_zh, example_en, example_zh, category, difficulty, created_at")
+    .eq("wordbook_id", wordbookId)
     .order("created_at", { ascending: true });
 
   if (error) {
@@ -101,6 +151,7 @@ async function loadVocabulariesFromSupabase() {
   // 把資料庫欄位名稱轉成原本單字卡使用的欄位名稱，後面的練習邏輯就不用大改。
   return (data || []).map((item) => ({
     id: String(item.id),
+    wordbookId: String(item.wordbook_id),
     word: item.word || "",
     partOfSpeech: item.part_of_speech || "",
     category: item.category || "未分類",
@@ -143,12 +194,45 @@ function renderHome() {
   dueCount.textContent = getDueCards().length;
   totalCount.textContent = vocabulary.length;
   accuracyRate.textContent = getAccuracyText();
+  selectedWordbookName.textContent = selectedWordbook ? selectedWordbook.name : "請先選擇單字本";
+  startButton.disabled = vocabulary.length === 0;
+  renderWordbooks();
   renderCategories();
+}
+
+function renderWordbooks() {
+  if (wordbooks.length === 0) {
+    wordbookList.innerHTML = `<p class="empty-state">目前沒有單字本資料</p>`;
+    return;
+  }
+
+  wordbookList.innerHTML = wordbooks
+    .map((wordbook) => {
+      const selectedClass = selectedWordbook && selectedWordbook.id === wordbook.id ? " is-selected" : "";
+
+      return `
+        <button class="wordbook-card${selectedClass}" type="button" data-wordbook-id="${escapeHtml(wordbook.id)}">
+          <h4>${escapeHtml(wordbook.name)}</h4>
+          <p>${escapeHtml(wordbook.description)}</p>
+          <div class="wordbook-meta">
+            <span>${escapeHtml(wordbook.level)}</span>
+            <span>${wordbook.wordCount} 個單字</span>
+          </div>
+        </button>
+      `;
+    })
+    .join("");
+
+  document.querySelectorAll("[data-wordbook-id]").forEach((button) => {
+    button.addEventListener("click", () => {
+      selectWordbook(button.dataset.wordbookId);
+    });
+  });
 }
 
 function renderCategories() {
   if (vocabulary.length === 0) {
-    categoryList.innerHTML = `<p class="empty-state">目前沒有分類資料</p>`;
+    categoryList.innerHTML = `<p class="empty-state">選擇單字本後會顯示分類資料</p>`;
     return;
   }
 
@@ -165,6 +249,37 @@ function renderCategories() {
       </article>
     `)
     .join("");
+}
+
+async function selectWordbook(wordbookId) {
+  const nextWordbook = wordbooks.find((wordbook) => wordbook.id === String(wordbookId));
+
+  if (!nextWordbook) {
+    return;
+  }
+
+  selectedWordbook = nextWordbook;
+  vocabulary = [];
+  startButton.disabled = true;
+  renderHome();
+  setStatusMessage("單字資料載入中...");
+
+  try {
+    vocabulary = await loadVocabulariesFromSupabase(nextWordbook.id);
+    renderHome();
+
+    if (vocabulary.length === 0) {
+      setStatusMessage("這個單字本目前沒有單字");
+      return;
+    }
+
+    setStatusMessage("");
+  } catch (error) {
+    vocabulary = [];
+    startButton.disabled = true;
+    renderHome();
+    setStatusMessage("資料讀取失敗，請稍後再試", true);
+  }
 }
 
 function getAccuracyText() {
@@ -193,7 +308,7 @@ function startOfToday() {
 
 function startPractice() {
   if (vocabulary.length === 0) {
-    setStatusMessage("目前沒有單字資料");
+    setStatusMessage(selectedWordbook ? "這個單字本目前沒有單字" : "請先選擇單字本");
     return;
   }
 
@@ -324,4 +439,13 @@ function setStatusMessage(message, isError = false) {
   statusMessage.textContent = message;
   statusMessage.classList.toggle("is-visible", Boolean(message));
   statusMessage.classList.toggle("is-error", isError);
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
