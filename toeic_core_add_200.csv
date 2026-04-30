@@ -1,0 +1,260 @@
+wordbook_id,word,part_of_speech,meaning_zh,example_en,example_zh,category,difficulty
+2990c5f1-41c5-449e-8b15-fe1a9a421445,access,noun,使用權,Employees need access to the system,員工需要系統使用權,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,accommodation,noun,住宿,The company paid for accommodation,公司支付了住宿費,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,achieve,verb,達成,The team achieved its goal,團隊達成了目標,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,active,adjective,活躍的,She is active in the project,她在專案中很活躍,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,address,noun,地址,Please write your address clearly,請清楚填寫你的地址,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,adjust,verb,調整,We need to adjust the schedule,我們需要調整時程,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,advertise,verb,打廣告,They advertise the service online,他們在線上宣傳這項服務,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,advice,noun,建議,Her advice helped the team,她的建議幫助了團隊,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,affordable,adjective,負擔得起的,The hotel offers affordable rooms,這家飯店提供價格實惠的房間,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,agency,noun,代理公司,The agency booked our tickets,代理公司幫我們訂了票,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,agreement,noun,協議,Both sides reached an agreement,雙方達成了協議,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,aisle,noun,走道,The clerk walked down the aisle,店員沿著走道走過去,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,alert,verb,提醒,The system will alert the user,系統會提醒使用者,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,allow,verb,允許,The pass allows entry to the building,這張通行證允許進入大樓,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,alternative,noun,替代方案,We need another alternative,我們需要另一個替代方案,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,amount,noun,金額,The total amount is correct,總金額是正確的,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,analyze,verb,分析,The team will analyze the data,團隊會分析資料,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,application,noun,申請表,Please complete the application,請完成申請表,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,arrival,noun,抵達,The arrival time is ten thirty,抵達時間是十點半,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,article,noun,文章,She read an article about marketing,她讀了一篇關於行銷的文章,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,asset,noun,資產,Experience is a valuable asset,經驗是有價值的資產,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,attachment,noun,附件,The file is in the attachment,檔案在附件裡,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,audit,noun,稽核,The audit starts next week,稽核下週開始,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,automatic,adjective,自動的,The door has an automatic lock,這扇門有自動鎖,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,award,noun,獎項,The company won an award,公司贏得了一個獎項,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,baggage,noun,行李,Your baggage is on the cart,你的行李在推車上,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,bankruptcy,noun,破產,The firm avoided bankruptcy,這家公司避免了破產,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,bargain,noun,便宜貨,This jacket is a bargain,這件外套很划算,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,bill,noun,帳單,The bill arrived by email,帳單透過電子郵件寄來,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,booklet,noun,小冊子,The booklet explains the rules,小冊子說明了規則,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,booth,noun,攤位,Our booth is near the entrance,我們的攤位在入口附近,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,borrow,verb,借入,Employees can borrow office equipment,員工可以借用辦公設備,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,brand,noun,品牌,This brand is popular with travelers,這個品牌很受旅客歡迎,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,brochure,noun,宣傳冊,The brochure lists tour prices,宣傳冊列出旅遊價格,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,bulk,noun,大量,We buy paper in bulk,我們大量購買紙張,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,cancel,verb,取消,They canceled the morning meeting,他們取消了早上的會議,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,capacity,noun,容量,The room has a capacity of fifty,這間房間可容納五十人,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,carrier,noun,運輸公司,The carrier delivered the boxes,運輸公司送達了箱子,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,cashier,noun,收銀員,The cashier gave me change,收銀員找錢給我,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,catalog,noun,型錄,The catalog shows new products,型錄展示新產品,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,celebrate,verb,慶祝,The team celebrated the success,團隊慶祝了成功,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,certificate,noun,證書,She received a training certificate,她收到了一張訓練證書,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,chairperson,noun,主席,The chairperson opened the meeting,主席宣布會議開始,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,checkout,noun,結帳處,The checkout is near the exit,結帳處在出口附近,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,client,noun,客戶,The client asked for details,客戶要求詳細資訊,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,clerk,noun,店員,The clerk helped the customer,店員幫助了顧客,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,code,noun,代碼,Enter the code on the screen,在螢幕上輸入代碼,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,collaborate,verb,合作,Two departments will collaborate,兩個部門會合作,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,commission,noun,佣金,Sales staff earn commission,業務人員賺取佣金,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,commodity,noun,商品,Oil is an important commodity,石油是重要商品,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,commuter,noun,通勤者,Many commuters use this station,許多通勤者使用這個車站,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,compensation,noun,補償,The worker received compensation,工人收到了補償,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,competitive,adjective,有競爭力的,Our prices are competitive,我們的價格有競爭力,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,complaint,noun,抱怨,The complaint was handled quickly,抱怨很快就被處理,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,complete,verb,完成,Please complete the form today,請今天完成表格,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,component,noun,零件,This component is very small,這個零件很小,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,conduct,verb,進行,They will conduct a survey,他們會進行一項調查,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,confidential,adjective,機密的,The document is confidential,這份文件是機密的,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,connection,noun,連接,The internet connection is slow,網路連線很慢,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,consent,noun,同意,We need written consent,我們需要書面同意,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,consider,verb,考慮,Please consider our offer,請考慮我們的提議,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,construction,noun,施工,Construction will begin in June,施工將在六月開始,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,consumer,noun,消費者,Consumers prefer low prices,消費者偏好低價格,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,contain,verb,包含,The package contains three items,包裹包含三件物品,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,content,noun,內容,The website content was updated,網站內容已更新,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,contribute,verb,貢獻,Everyone can contribute ideas,每個人都可以貢獻想法,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,convert,verb,轉換,The software can convert files,這個軟體可以轉換檔案,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,cooperate,verb,合作,The teams cooperate well,這些團隊合作良好,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,copy,noun,副本,Please send me a copy,請寄一份副本給我,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,corporate,adjective,企業的,The corporate office moved downtown,企業總部搬到市中心,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,correspondence,noun,通信,Keep all business correspondence,請保留所有商務通信,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,costly,adjective,昂貴的,The repair was costly,這次維修很昂貴,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,courier,noun,快遞員,The courier arrived early,快遞員提早到了,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,cover,verb,涵蓋,The course covers basic skills,課程涵蓋基本技能,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,credit,noun,信用額度,The bank increased my credit,銀行提高了我的信用額度,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,criteria,noun,標準,The criteria are listed online,標準列在線上,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,customs,noun,海關,The package passed customs,包裹通過了海關,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,damage,noun,損壞,The box had minor damage,箱子有輕微損壞,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,debt,noun,債務,The company reduced its debt,公司減少了債務,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,decline,verb,下降,Sales declined last month,上個月銷售下降,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,deduction,noun,扣除額,The deduction appears on the bill,扣除額出現在帳單上,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,defect,noun,瑕疵,The product has a small defect,產品有一個小瑕疵,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,deposit,noun,訂金,A deposit is required today,今天需要支付訂金,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,describe,verb,描述,Please describe the problem,請描述這個問題,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,design,verb,設計,They design office furniture,他們設計辦公家具,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,detail,noun,細節,The report gives every detail,報告提供每個細節,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,determine,verb,決定,The test will determine the result,測試會決定結果,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,device,noun,裝置,This device saves energy,這個裝置節省能源,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,director,noun,主管,The director approved the budget,主管核准了預算,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,directory,noun,名錄,The directory lists all offices,名錄列出所有辦公室,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,display,noun,展示,The display attracted many shoppers,展示吸引了許多購物者,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,distribute,verb,分發,Staff distributed the forms,員工分發了表格,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,division,noun,部門,He works in the finance division,他在財務部門工作,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,document,noun,文件,Please print the document,請列印這份文件,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,donation,noun,捐款,The company made a donation,公司捐了一筆款項,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,downtown,noun,市中心,The office is downtown,辦公室在市中心,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,draft,noun,草稿,The first draft is ready,第一份草稿已完成,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,due,adjective,到期的,The rent is due tomorrow,租金明天到期,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,durable,adjective,耐用的,This bag is durable,這個包很耐用,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,earnings,noun,收益,Earnings rose this year,今年收益增加,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,economy,noun,經濟,The economy is improving slowly,經濟正在慢慢改善,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,effective,adjective,有效的,The new rule is effective today,新規定今天生效,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,electronic,adjective,電子的,Electronic tickets are accepted,電子票券可以使用,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,eligible,adjective,符合資格的,All members are eligible,所有會員都符合資格,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,emergency,noun,緊急情況,Call this number in an emergency,緊急時請撥打這個號碼,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,enclose,verb,附上,I enclosed the signed form,我附上了簽好的表格,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,encourage,verb,鼓勵,Managers encourage new ideas,主管鼓勵新想法,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,ensure,verb,確保,Please ensure the door is locked,請確保門已上鎖,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,equipment,noun,設備,The equipment arrived yesterday,設備昨天送達,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,examine,verb,檢查,The doctor examined the worker,醫生檢查了這位員工,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,exceed,verb,超過,Sales exceeded our target,銷售超過了目標,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,exchange,noun,交換,The store allows exchanges,這家店允許換貨,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,executive,noun,主管,The executive met the clients,主管會見了客戶,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,exhibit,noun,展覽,The exhibit opens tomorrow,展覽明天開幕,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,expand,verb,擴展,The company will expand overseas,公司將拓展海外市場,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,expect,verb,預期,We expect more visitors today,我們預期今天會有更多訪客,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,expert,noun,專家,An expert checked the machine,專家檢查了機器,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,export,verb,出口,The factory exports shoes,工廠出口鞋子,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,extend,verb,延長,The store extended its hours,商店延長了營業時間,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,external,adjective,外部的,External guests need a pass,外部訪客需要通行證,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,fare,noun,票價,The train fare is low,火車票價很低,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,faulty,adjective,有故障的,The faulty printer was replaced,故障的印表機已被更換,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,fee,noun,費用,The membership fee is low,會員費不高,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,file,verb,提交,Please file the report today,請今天提交報告,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,finalize,verb,定案,We need to finalize the plan,我們需要將計畫定案,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,firm,noun,公司,The firm hired new designers,公司雇用了新設計師,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,flyer,noun,傳單,The flyer lists the sale dates,傳單列出特賣日期,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,forecast,noun,預測,The sales forecast looks strong,銷售預測看起來很強,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,founder,noun,創辦人,The founder spoke at the event,創辦人在活動中演講,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,freight,noun,貨運,Freight costs increased this year,今年貨運成本增加,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,frequent,adjective,頻繁的,Frequent delays upset customers,頻繁延誤讓顧客不滿,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,fund,noun,基金,The fund supports new businesses,這個基金支持新企業,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,general,adjective,一般的,This is a general question,這是一般問題,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,goal,noun,目標,Our goal is better service,我們的目標是更好的服務,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,goods,noun,貨品,The goods arrived safely,貨品安全抵達,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,grant,noun,補助金,The city offered a grant,市政府提供了一筆補助金,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,growth,noun,成長,The company reported strong growth,公司公布強勁成長,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,guarantee,noun,保證,The product has a money back guarantee,產品有退款保證,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,handle,verb,處理,She handles customer questions,她處理顧客問題,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,headquarters,noun,總部,The headquarters is in Taipei,總部在台北,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,host,verb,主辦,The hotel will host the event,飯店將主辦這場活動,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,identification,noun,身分證明,Please bring identification,請攜帶身分證明,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,immediate,adjective,立即的,The issue needs immediate attention,這個問題需要立即處理,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,import,verb,進口,The store imports coffee beans,這家店進口咖啡豆,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,income,noun,收入,His income increased this year,他的收入今年增加,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,increase,verb,增加,The company increased salaries,公司提高了薪資,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,independent,adjective,獨立的,She is an independent consultant,她是一位獨立顧問,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,industry,noun,產業,The travel industry is growing,旅遊產業正在成長,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,inform,verb,告知,Please inform us by Friday,請在週五前告知我們,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,inquiry,noun,詢問,We received your inquiry,我們收到你的詢問,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,insurance,noun,保險,The plan includes travel insurance,這個方案包含旅遊保險,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,internal,adjective,內部的,This is an internal memo,這是一份內部備忘錄,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,interview,noun,面試,Her interview is tomorrow,她的面試在明天,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,introduce,verb,介紹,Let me introduce our new manager,讓我介紹我們的新經理,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,inventory,noun,庫存,The inventory is checked weekly,庫存每週檢查,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,invest,verb,投資,The firm will invest in technology,公司將投資科技,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,issue,noun,問題,The issue was fixed quickly,問題很快被修正,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,item,noun,項目,This item is out of stock,這項商品缺貨,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,journal,noun,期刊,The article appeared in a journal,這篇文章刊登在期刊上,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,lease,noun,租約,The lease ends in August,租約在八月結束,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,legal,adjective,法律的,We need legal advice,我們需要法律建議,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,lend,verb,借出,The bank will lend money to small firms,銀行會借錢給小公司,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,limit,noun,限制,There is a limit on refunds,退款有一項限制,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,loan,noun,貸款,She applied for a business loan,她申請了商業貸款,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,location,noun,地點,The location is near the station,地點在車站附近,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,manufacture,verb,製造,The company manufactures bicycles,公司製造腳踏車,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,market,noun,市場,The market is very competitive,市場競爭很激烈,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,material,noun,材料,The material is light and strong,這種材料輕又堅固,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,measure,verb,測量,We measured the office space,我們測量了辦公空間,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,mentor,noun,導師,Each trainee has a mentor,每位受訓者都有一位導師,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,method,noun,方法,This method saves time,這個方法節省時間,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,minimum,adjective,最低的,The minimum order is ten boxes,最低訂購量是十箱,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,monitor,verb,監控,The team monitors daily sales,團隊監控每日銷售,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,mortgage,noun,房貸,They applied for a mortgage,他們申請了房貸,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,nationwide,adjective,全國性的,The company offers nationwide delivery,公司提供全國配送,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,obtain,verb,取得,You must obtain a permit first,你必須先取得許可,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,occupation,noun,職業,Please write your occupation,請填寫你的職業,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,offer,noun,提議,The offer ends tonight,這項優惠今晚結束,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,official,adjective,正式的,We received an official letter,我們收到一封正式信函,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,online,adverb,在線上,You can check in online,你可以在線上辦理報到,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,operate,verb,營運,The store operates every day,這家店每天營業,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,option,noun,選項,This plan is the best option,這個方案是最佳選項,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,outlet,noun,分店,The outlet sells discounted goods,這家分店販售折扣商品,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,overtime,noun,加班,Staff worked overtime last night,員工昨晚加班,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,package,noun,包裹,The package is at the front desk,包裹在櫃台,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,participant,noun,參加者,Each participant received a badge,每位參加者都收到識別證,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,partner,noun,合作夥伴,Our partner joined the project,我們的合作夥伴加入了專案,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,permit,noun,許可證,You need a parking permit,你需要停車許可證,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,personnel,noun,人事部門,Personnel will review the forms,人事部門會審查表格,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,platform,noun,平台,The platform supports online sales,這個平台支援線上銷售,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,present,verb,簡報,She will present the results,她會簡報結果,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,previous,adjective,之前的,The previous owner left records,前任業主留下了紀錄,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,priority,noun,優先事項,Customer safety is our priority,顧客安全是我們的優先事項,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,procedure,noun,程序,Follow the safety procedure,請遵守安全程序,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,profit,noun,利潤,Profit increased last quarter,上季利潤增加,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,promotion,noun,促銷,The promotion starts tomorrow,促銷明天開始,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,property,noun,房產,The property is near the airport,這處房產在機場附近,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,publication,noun,出版品,The publication is free online,這份出版品在線上免費,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,quantity,noun,數量,Please check the quantity,請確認數量,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,quote,noun,報價,The quote is valid for ten days,報價十天內有效,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,rate,noun,費率,The room rate includes breakfast,房價包含早餐,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,recommend,verb,推薦,I recommend this restaurant,我推薦這家餐廳,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,record,noun,紀錄,Keep a record of each payment,保留每筆付款紀錄,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,reference,noun,推薦人,Please provide two references,請提供兩位推薦人,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,region,noun,地區,Sales grew in this region,這個地區的銷售成長,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,regular,adjective,定期的,Regular checks are important,定期檢查很重要,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,renew,verb,更新,Please renew your membership,請更新你的會員資格,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,rent,noun,租金,The rent is due on Monday,租金週一到期,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,reopen,verb,重新開放,The branch will reopen tomorrow,分店明天會重新開放,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,reschedule,verb,重新安排,We need to reschedule the call,我們需要重新安排通話,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,resource,noun,資源,The website is a useful resource,這個網站是有用的資源,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,respond,verb,回覆,Please respond by noon,請在中午前回覆,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,result,noun,結果,The result was better than expected,結果比預期更好,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,resume,noun,履歷,Please send your resume,請寄出你的履歷,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,review,verb,審查,The manager will review the file,經理會審查檔案,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,reward,noun,獎勵,The company offers a reward,公司提供獎勵,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,route,noun,路線,This route is faster,這條路線更快,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,salary,noun,薪水,The salary is paid monthly,薪水每月支付,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,sample,noun,樣品,The supplier sent a sample,供應商寄來樣品,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,saving,noun,節省,The plan offers big savings,這個方案能節省很多,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,sector,noun,產業部門,The technology sector is growing,科技產業正在成長,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,security,noun,安全,Security checked every visitor,保全檢查每位訪客,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,select,verb,選擇,Please select a payment method,請選擇付款方式,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,seminar,noun,研討課,The seminar begins at nine,研討課九點開始,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,service,noun,服務,The service was fast,服務很快速,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,signature,noun,簽名,Your signature is required,需要你的簽名,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,site,noun,地點,The construction site is closed,施工地點已關閉,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,skill,noun,技能,This job requires computer skills,這份工作需要電腦技能,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,specialist,noun,專員,A tax specialist helped us,稅務專員幫助了我們,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,stable,adjective,穩定的,The market is stable this month,本月市場很穩定,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,statement,noun,聲明,The bank sent a statement,銀行寄來了對帳單,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,stock,noun,庫存,The item is back in stock,商品已恢復庫存,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,storage,noun,儲存,The office needs more storage,辦公室需要更多儲存空間,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,strategy,noun,策略,The strategy improved sales,這項策略改善了銷售,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,submit,verb,提交,Submit the form online,在線上提交表格,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,supervise,verb,監督,She supervises five workers,她監督五名員工,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,survey,noun,調查,The survey takes five minutes,這份調查需要五分鐘,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,target,noun,目標,We reached our sales target,我們達成了銷售目標,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,tax,noun,稅,The price includes tax,價格包含稅,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,tenant,noun,房客,The tenant paid rent early,房客提早付了租金,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,terminal,noun,航廈,The bus stops at terminal two,公車停在第二航廈,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,terms,noun,條款,Please read the terms carefully,請仔細閱讀條款,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,track,verb,追蹤,You can track the package online,你可以在線上追蹤包裹,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,traffic,noun,交通,Traffic was heavy this morning,今天早上交通繁忙,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,trend,noun,趨勢,This trend may continue,這個趨勢可能會持續,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,trial,noun,試用,The software has a free trial,這套軟體有免費試用,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,turnover,noun,離職率,Staff turnover is low,員工離職率很低,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,utility,noun,公用事業,Utility bills are paid monthly,水電帳單每月支付,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,valid,adjective,有效的,The coupon is valid today,優惠券今天有效,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,value,noun,價值,The product offers good value,這項產品很划算,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,vehicle,noun,車輛,The company owns ten vehicles,公司擁有十輛車,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,vendor,noun,廠商,The vendor delivered supplies,廠商送來了用品,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,venue,noun,場地,The venue is near the hotel,場地在飯店附近,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,verify,verb,驗證,Please verify your email address,請驗證你的電子郵件地址,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,visitor,noun,訪客,Every visitor must sign in,每位訪客都必須簽到,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,volume,noun,數量,Order volume increased in May,五月訂單量增加,toeic_core,medium
+2990c5f1-41c5-449e-8b15-fe1a9a421445,withdraw,verb,提領,You can withdraw cash here,你可以在這裡提領現金,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,workplace,noun,工作場所,Safety is important in the workplace,工作場所的安全很重要,toeic_core,easy
+2990c5f1-41c5-449e-8b15-fe1a9a421445,worth,adjective,值得的,The training was worth the time,這次訓練值得花時間,toeic_core,easy
