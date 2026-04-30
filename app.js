@@ -1,83 +1,12 @@
-// 單字資料先放在 JavaScript 陣列中，之後如果要擴充可以直接新增物件。
-const vocabulary = [
-  {
-    id: "toeic-001",
-    word: "agenda",
-    partOfSpeech: "noun",
-    category: "TOEIC",
-    meaning: "議程",
-    example: "The manager sent the meeting agenda this morning.",
-    translation: "經理今天早上寄出了會議議程。"
-  },
-  {
-    id: "toeic-002",
-    word: "reimburse",
-    partOfSpeech: "verb",
-    category: "TOEIC",
-    meaning: "報銷；償還",
-    example: "The company will reimburse your travel expenses.",
-    translation: "公司會報銷你的差旅費。"
-  },
-  {
-    id: "daily-001",
-    word: "grocery",
-    partOfSpeech: "noun",
-    category: "日常生活",
-    meaning: "食品雜貨",
-    example: "I need to buy some groceries after work.",
-    translation: "我下班後需要買一些食品雜貨。"
-  },
-  {
-    id: "daily-002",
-    word: "commute",
-    partOfSpeech: "verb / noun",
-    category: "日常生活",
-    meaning: "通勤；通勤路程",
-    example: "My daily commute takes about thirty minutes.",
-    translation: "我每天通勤大約需要三十分鐘。"
-  },
-  {
-    id: "business-001",
-    word: "proposal",
-    partOfSpeech: "noun",
-    category: "商業英文",
-    meaning: "提案",
-    example: "The client approved our proposal yesterday.",
-    translation: "客戶昨天核准了我們的提案。"
-  },
-  {
-    id: "business-002",
-    word: "negotiate",
-    partOfSpeech: "verb",
-    category: "商業英文",
-    meaning: "談判；協商",
-    example: "We need to negotiate the final price with the supplier.",
-    translation: "我們需要和供應商協商最終價格。"
-  },
-  {
-    id: "tech-001",
-    word: "interface",
-    partOfSpeech: "noun",
-    category: "科技英文",
-    meaning: "介面",
-    example: "The new interface is easier for beginners to use.",
-    translation: "新的介面更容易讓初學者使用。"
-  },
-  {
-    id: "tech-002",
-    word: "encrypt",
-    partOfSpeech: "verb",
-    category: "科技英文",
-    meaning: "加密",
-    example: "The app can encrypt your private messages.",
-    translation: "這個應用程式可以加密你的私人訊息。"
-  }
-];
-
+// TODO: 換成你的 Supabase 專案設定。不要使用 service_role 或 secret key。
+const SUPABASE_URL = "https://gcaiqgxpamblufeqxzjv.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_ya9qrXLyFN5YCjQkSrcZ5g_8wQMVWKE";
 const STORAGE_KEY = "englishFlashcardProgress";
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
+const supabaseClient = createSupabaseClient();
 
 // 集中保存會被改變的狀態，畫面更新時比較好追蹤。
+let vocabulary = [];
 let progress = loadProgress();
 let practiceQueue = [];
 let currentIndex = 0;
@@ -96,6 +25,7 @@ const dueCount = document.querySelector("#dueCount");
 const totalCount = document.querySelector("#totalCount");
 const accuracyRate = document.querySelector("#accuracyRate");
 const categoryList = document.querySelector("#categoryList");
+const statusMessage = document.querySelector("#statusMessage");
 const cardProgress = document.querySelector("#cardProgress");
 const wordCategory = document.querySelector("#wordCategory");
 const wordText = document.querySelector("#wordText");
@@ -116,7 +46,70 @@ ratingButtons.forEach((button) => {
   });
 });
 
-renderHome();
+initializeApp();
+
+function createSupabaseClient() {
+  // CDN 載入成功後，Supabase client 會掛在 window.supabase 上。
+  if (typeof window === "undefined" || !window.supabase) {
+    return null;
+  }
+
+  try {
+    return window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  } catch (error) {
+    return null;
+  }
+}
+
+async function initializeApp() {
+  setStatusMessage("單字資料載入中...");
+  startButton.disabled = true;
+
+  try {
+    vocabulary = await loadVocabulariesFromSupabase();
+    startButton.disabled = vocabulary.length === 0;
+    renderHome();
+
+    if (vocabulary.length === 0) {
+      setStatusMessage("目前沒有單字資料");
+      return;
+    }
+
+    setStatusMessage("");
+  } catch (error) {
+    vocabulary = [];
+    startButton.disabled = true;
+    renderHome();
+    setStatusMessage("資料庫連線失敗，請稍後再試", true);
+  }
+}
+
+async function loadVocabulariesFromSupabase() {
+  if (!supabaseClient) {
+    throw new Error("Supabase client is not ready.");
+  }
+
+  const { data, error } = await supabaseClient
+    .from("vocabularies")
+    .select("id, word, part_of_speech, meaning_zh, example_en, example_zh, category, difficulty, created_at")
+    .order("created_at", { ascending: true });
+
+  if (error) {
+    throw error;
+  }
+
+  // 把資料庫欄位名稱轉成原本單字卡使用的欄位名稱，後面的練習邏輯就不用大改。
+  return (data || []).map((item) => ({
+    id: String(item.id),
+    word: item.word || "",
+    partOfSpeech: item.part_of_speech || "",
+    category: item.category || "未分類",
+    meaning: item.meaning_zh || "",
+    example: item.example_en || "",
+    translation: item.example_zh || "",
+    difficulty: item.difficulty || ""
+  }));
+}
 
 function loadProgress() {
   // localStorage 只能存字串，所以讀出後要用 JSON.parse 轉回物件。
@@ -154,6 +147,11 @@ function renderHome() {
 }
 
 function renderCategories() {
+  if (vocabulary.length === 0) {
+    categoryList.innerHTML = `<p class="empty-state">目前沒有分類資料</p>`;
+    return;
+  }
+
   const categoryCounts = vocabulary.reduce((counts, card) => {
     counts[card.category] = (counts[card.category] || 0) + 1;
     return counts;
@@ -194,6 +192,11 @@ function startOfToday() {
 }
 
 function startPractice() {
+  if (vocabulary.length === 0) {
+    setStatusMessage("目前沒有單字資料");
+    return;
+  }
+
   const dueCards = getDueCards();
   // 如果今天沒有待複習，就讓使用者練習全部單字，避免按鈕按了卻沒東西看。
   practiceQueue = dueCards.length > 0 ? dueCards : [...vocabulary];
@@ -315,4 +318,10 @@ function resetProgress() {
   progress = createEmptyProgress();
   saveProgress();
   renderHome();
+}
+
+function setStatusMessage(message, isError = false) {
+  statusMessage.textContent = message;
+  statusMessage.classList.toggle("is-visible", Boolean(message));
+  statusMessage.classList.toggle("is-error", isError);
 }

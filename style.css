@@ -163,6 +163,27 @@ h2 {
   padding: 24px;
 }
 
+.status-message {
+  display: none;
+  margin: 0 0 22px;
+  padding: 14px 16px;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  color: #1e3a8a;
+  background: #eff6ff;
+  font-weight: 700;
+}
+
+.status-message.is-visible {
+  display: block;
+}
+
+.status-message.is-error {
+  border-color: #fecaca;
+  color: #991b1b;
+  background: #fef2f2;
+}
+
 .category-panel h3 {
   margin-bottom: 16px;
   font-size: 1.05rem;
@@ -185,6 +206,11 @@ h2 {
   display: block;
   color: var(--muted);
   font-size: 0.85rem;
+}
+
+.empty-state {
+  margin: 0;
+  color: var(--muted);
 }
 
 .practice-header {
