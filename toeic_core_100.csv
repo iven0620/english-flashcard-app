@@ -1,0 +1,117 @@
+wordbook_id,word,part_of_speech,meaning_zh,example_en,example_zh,category,difficulty
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,agenda,noun,議程,The agenda is ready for the meeting,會議議程已經準備好了,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,appointment,noun,預約,She has an appointment at ten,她十點有一個預約,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,approval,noun,核准,The plan needs final approval,這個計畫需要最後核准,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,arrange,verb,安排,We will arrange a short meeting,我們會安排一場簡短會議,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,attend,verb,參加,Many employees attend the training,許多員工參加訓練,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,available,adjective,可取得的,The manager is available now,經理現在有空,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,benefit,noun,福利,The company offers good benefits,公司提供很好的福利,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,budget,noun,預算,The project has a small budget,這個專案預算不高,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,candidate,noun,候選人,The candidate has strong experience,這位候選人有豐富經驗,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,confirm,verb,確認,Please confirm your flight time,請確認你的航班時間,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,contract,noun,合約,They signed the contract today,他們今天簽了合約,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,deadline,noun,截止期限,The deadline is next Friday,截止期限是下週五,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,department,noun,部門,She works in the sales department,她在業務部門工作,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,discount,noun,折扣,This store offers a ten percent discount,這家店提供九折優惠,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,employee,noun,員工,Each employee received a new badge,每位員工都收到新識別證,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,estimate,noun,估價,The estimate includes labor costs,估價包含人工費用,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,expense,noun,費用,Travel expenses must be reported,差旅費必須申報,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,feedback,noun,回饋,Customer feedback was very helpful,顧客回饋很有幫助,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,invoice,noun,發票,Please send the invoice today,請今天寄出發票,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,manager,noun,經理,The manager approved the request,經理核准了這項請求,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,notice,noun,通知,The notice was posted online,通知已經張貼在線上,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,order,noun,訂單,Your order will arrive tomorrow,你的訂單明天會送達,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,payment,noun,付款,The payment is due today,付款今天到期,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,policy,noun,政策,Please read the company policy,請閱讀公司政策,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,position,noun,職位,He applied for a sales position,他申請了一個業務職位,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,product,noun,產品,This product is very popular,這項產品很受歡迎,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,proposal,noun,提案,The client liked our proposal,客戶喜歡我們的提案,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,purchase,verb,購買,You can purchase tickets online,你可以在線上購買票券,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,receipt,noun,收據,Keep the receipt for your records,請保留收據作為紀錄,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,recruit,verb,招募,The company plans to recruit engineers,公司計畫招募工程師,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,refund,noun,退款,The customer requested a refund,顧客要求退款,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,register,verb,登記,Please register before the event,請在活動前登記,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,remind,verb,提醒,Please remind me tomorrow,請明天提醒我,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,repair,verb,修理,They will repair the copier today,他們今天會修理影印機,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,report,noun,報告,The report is on your desk,報告在你的桌上,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,reservation,noun,預訂,I made a hotel reservation,我訂了一間飯店,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,schedule,noun,時程,The schedule changed this morning,時程今天早上改了,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,shipment,noun,貨運,The shipment arrived on time,貨物準時送達,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,staff,noun,員工,The staff answered all questions,員工回答了所有問題,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,supplier,noun,供應商,The supplier sent new samples,供應商寄來新樣品,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,training,noun,訓練,New staff must complete training,新員工必須完成訓練,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,transfer,verb,轉移,They will transfer the funds today,他們今天會轉移資金,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,update,verb,更新,Please update the client list,請更新客戶名單,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,vacancy,noun,職缺,There is a vacancy in accounting,會計部有一個職缺,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,warranty,noun,保固,The printer has a one year warranty,這台印表機有一年保固,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,warehouse,noun,倉庫,The goods are stored in the warehouse,貨品存放在倉庫裡,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,accurate,adjective,準確的,The information is accurate,這項資訊是準確的,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,additional,adjective,額外的,Additional staff are needed today,今天需要額外人手,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,annual,adjective,年度的,The annual meeting starts soon,年度會議即將開始,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,authorized,adjective,授權的,Only authorized staff may enter,只有授權員工可以進入,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,brief,adjective,簡短的,We had a brief discussion,我們進行了簡短討論,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,convenient,adjective,方便的,The location is very convenient,這個地點很方便,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,current,adjective,目前的,The current price is lower,目前價格較低,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,efficient,adjective,有效率的,The new system is efficient,新系統很有效率,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,financial,adjective,財務的,She reviewed the financial report,她查看了財務報告,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,flexible,adjective,彈性的,We offer flexible work hours,我們提供彈性工時,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,local,adjective,當地的,The local office is closed today,當地辦公室今天關閉,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,overdue,adjective,逾期的,The payment is overdue,付款已經逾期,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,permanent,adjective,永久的,She accepted a permanent position,她接受了一個正式職位,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,professional,adjective,專業的,The staff gave professional service,員工提供專業服務,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,reasonable,adjective,合理的,The price seems reasonable,價格看起來合理,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,reliable,adjective,可靠的,We need a reliable supplier,我們需要可靠的供應商,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,temporary,adjective,暫時的,This is a temporary office,這是一間臨時辦公室,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,urgent,adjective,緊急的,This is an urgent request,這是一項緊急請求,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,valuable,adjective,有價值的,Your advice is valuable,你的建議很有價值,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,weekly,adjective,每週的,We hold weekly team meetings,我們每週舉行團隊會議,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,accept,verb,接受,They accept credit cards,他們接受信用卡,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,announce,verb,宣布,The company announced a new policy,公司宣布了一項新政策,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,assist,verb,協助,Staff will assist all visitors,員工會協助所有訪客,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,contact,verb,聯絡,Please contact customer service,請聯絡客服,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,deliver,verb,遞送,They deliver packages every morning,他們每天早上遞送包裹,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,discuss,verb,討論,We will discuss the budget,我們會討論預算,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,hire,verb,雇用,The store will hire more clerks,這家店會雇用更多店員,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,improve,verb,改善,The team wants to improve service,團隊想改善服務,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,include,verb,包含,The fee includes breakfast,費用包含早餐,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,install,verb,安裝,They will install new software,他們會安裝新軟體,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,maintain,verb,維護,We maintain the equipment monthly,我們每月維護設備,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,notify,verb,通知,Please notify us of any change,如有變更請通知我們,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,participate,verb,參與,Employees can participate in the survey,員工可以參與這項調查,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,postpone,verb,延期,They postponed the workshop,他們延後了工作坊,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,process,verb,處理,The bank processed the payment,銀行處理了付款,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,provide,verb,提供,The hotel provides free breakfast,飯店提供免費早餐,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,reduce,verb,減少,The new plan will reduce costs,新計畫會降低成本,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,replace,verb,更換,We need to replace the printer,我們需要更換印表機,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,request,verb,要求,You may request a copy online,你可以在線上要求副本,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,ship,verb,運送,We ship products overseas,我們將產品運送到海外,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,apply,verb,申請,You can apply online,你可以在線上申請,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,assign,verb,指派,The supervisor assigned new tasks,主管指派了新任務,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,charge,verb,收費,The hotel charges for parking,飯店停車會收費,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,complain,verb,抱怨,Customers complained about the delay,顧客抱怨延誤,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,consult,verb,諮詢,Please consult the finance team,請諮詢財務團隊,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,delay,verb,延誤,Bad weather delayed the flight,壞天氣延誤了航班,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,inspect,verb,檢查,The worker inspected the shipment,工人檢查了貨物,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,negotiate,verb,協商,They negotiated a better price,他們協商出更好的價格,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,organize,verb,組織,She organized the conference,她籌辦了會議,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,reserve,verb,預訂,We reserved a table for six,我們預訂了六人桌,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,account,noun,帳戶,I opened a new bank account,我開了一個新銀行帳戶,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,balance,noun,餘額,Check your account balance online,在線上查看你的帳戶餘額,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,branch,noun,分店,The branch opens at nine,分店九點開門,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,claim,noun,索賠,The customer filed a claim,顧客提出索賠,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,conference,noun,會議,The conference starts on Monday,會議週一開始,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,destination,noun,目的地,Tokyo is our final destination,東京是我們的最終目的地,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,facility,noun,設施,The facility is clean and modern,這項設施乾淨又現代,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,itinerary,noun,行程表,The itinerary includes three cities,行程表包含三個城市,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,luggage,noun,行李,Please keep your luggage with you,請隨身保管你的行李,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,merchandise,noun,商品,The merchandise is on display,商品正在展示中,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,passenger,noun,乘客,Each passenger needs a ticket,每位乘客都需要票,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,payroll,noun,薪資名冊,The payroll is processed monthly,薪資每月處理,toeic_core,hard
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,qualification,noun,資格,This job requires special qualifications,這份工作需要特殊資格,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,representative,noun,代表,A service representative will call you,客服代表會打電話給你,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,retail,noun,零售,She has five years of retail experience,她有五年零售經驗,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,revenue,noun,營收,Revenue increased this quarter,本季營收增加,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,subscription,noun,訂閱,Your subscription ends next month,你的訂閱下個月結束,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,transaction,noun,交易,The transaction was completed online,交易已在線上完成,toeic_core,medium
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,transportation,noun,交通,Transportation is included in the tour,旅遊包含交通,toeic_core,easy
+ 2990c5f1-41c5-449e-8b15-fe1a9a421445,workshop,noun,研討會,The workshop begins at two,研討會兩點開始,toeic_core,easy
