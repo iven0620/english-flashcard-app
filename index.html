@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>英文單字卡練習</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="top-bar">
+      <div>
+        <p class="eyebrow">English Flashcards</p>
+        <h1>英文單字卡練習</h1>
+      </div>
+      <button id="resetButton" class="icon-button" type="button" title="重置學習紀錄">重置</button>
+    </header>
+
+    <section id="homeView" class="view is-active" aria-labelledby="homeTitle">
+      <div class="intro">
+        <div>
+          <p class="eyebrow">今日練習</p>
+          <h2 id="homeTitle">用一張卡片，慢慢記住一個字。</h2>
+        </div>
+        <button id="startButton" class="primary-button" type="button">開始練習</button>
+      </div>
+
+      <section class="stats-grid" aria-label="學習統計">
+        <article class="stat-card">
+          <span class="stat-label">今日待複習</span>
+          <strong id="dueCount">0</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">總單字數</span>
+          <strong id="totalCount">0</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">正確率</span>
+          <strong id="accuracyRate">0%</strong>
+        </article>
+      </section>
+
+      <section class="category-panel" aria-label="分類列表">
+        <h3>分類</h3>
+        <div id="categoryList" class="category-list"></div>
+      </section>
+    </section>
+
+    <section id="practiceView" class="view" aria-labelledby="practiceTitle">
+      <div class="practice-header">
+        <button id="backHomeButton" class="secondary-button" type="button">回首頁</button>
+        <div>
+          <p id="cardProgress" class="eyebrow">第 1 張</p>
+          <h2 id="practiceTitle">練習單字卡</h2>
+        </div>
+      </div>
+
+      <button id="flashcard" class="flashcard" type="button" aria-label="點擊翻面">
+        <div class="card-inner">
+          <article class="card-face card-front">
+            <span id="wordCategory" class="category-pill">TOEIC</span>
+            <h3 id="wordText">Vocabulary</h3>
+            <p id="partOfSpeech">noun</p>
+            <span class="tap-hint">點擊卡片查看解釋</span>
+          </article>
+
+          <article class="card-face card-back">
+            <span class="card-section-title">中文意思</span>
+            <h3 id="meaningText">意思</h3>
+            <span class="card-section-title">英文例句</span>
+            <p id="exampleText">Example sentence.</p>
+            <span class="card-section-title">中文翻譯</span>
+            <p id="translationText">例句翻譯</p>
+          </article>
+        </div>
+      </button>
+
+      <div class="answer-actions" aria-label="練習操作">
+        <button class="rating-button is-low" type="button" data-rating="forgot">不認識</button>
+        <button class="rating-button is-mid" type="button" data-rating="unclear">模糊</button>
+        <button class="rating-button is-high" type="button" data-rating="known">認識</button>
+        <button id="nextButton" class="secondary-button" type="button">下一張</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
