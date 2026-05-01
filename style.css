@@ -282,6 +282,37 @@ h2 {
   text-align: right;
 }
 
+.round-stats {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.round-stats article,
+.complete-stats article {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.round-stats span,
+.complete-stats span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.round-stats strong,
+.complete-stats strong {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: 1.15rem;
+}
+
 .flashcard {
   display: block;
   width: min(560px, 100%);
@@ -383,10 +414,14 @@ h2 {
 
 .answer-actions {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   width: min(720px, 100%);
   margin: 22px auto 0;
+}
+
+#nextButton {
+  display: none;
 }
 
 .rating-button {
@@ -417,6 +452,34 @@ h2 {
   outline-offset: 3px;
 }
 
+.complete-panel {
+  display: none;
+  width: min(720px, 100%);
+  margin: 26px auto 0;
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.complete-panel.is-visible {
+  display: block;
+}
+
+.complete-panel h2 {
+  margin-bottom: 20px;
+}
+
+.complete-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 22px;
+  text-align: left;
+}
+
 @media (max-width: 760px) {
   .app-shell {
     padding: 20px 14px 36px;
@@ -434,6 +497,7 @@ h2 {
   }
 
   .stats-grid,
+  .round-stats,
   .wordbook-list,
   .category-list {
     grid-template-columns: 1fr;
@@ -455,7 +519,11 @@ h2 {
   }
 
   .answer-actions {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+  }
+
+  .complete-stats {
+    grid-template-columns: 1fr;
   }
 }
 

@@ -10,9 +10,9 @@ let wordbooks = [];
 let vocabulary = [];
 let selectedWordbook = null;
 let progress = loadProgress();
-let practiceQueue = [];
-let currentIndex = 0;
-let selectedRating = null;
+let reviewQueue = [];
+let roundCards = [];
+let roundStats = createEmptyRoundStats();
 
 const homeView = document.querySelector("#homeView");
 const practiceView = document.querySelector("#practiceView");
@@ -22,6 +22,9 @@ const resetButton = document.querySelector("#resetButton");
 const flashcard = document.querySelector("#flashcard");
 const nextButton = document.querySelector("#nextButton");
 const ratingButtons = document.querySelectorAll("[data-rating]");
+const answerActions = document.querySelector(".answer-actions");
+const completeView = document.querySelector("#completeView");
+const restartRoundButton = document.querySelector("#restartRoundButton");
 
 const dueCount = document.querySelector("#dueCount");
 const totalCount = document.querySelector("#totalCount");
@@ -37,16 +40,27 @@ const partOfSpeech = document.querySelector("#partOfSpeech");
 const meaningText = document.querySelector("#meaningText");
 const exampleText = document.querySelector("#exampleText");
 const translationText = document.querySelector("#translationText");
+const practiceWordbookName = document.querySelector("#practiceWordbookName");
+const roundTotalCount = document.querySelector("#roundTotalCount");
+const roundKnownCount = document.querySelector("#roundKnownCount");
+const roundRemainingCount = document.querySelector("#roundRemainingCount");
+const roundUnclearCount = document.querySelector("#roundUnclearCount");
+const roundForgotCount = document.querySelector("#roundForgotCount");
+const completeTotalCount = document.querySelector("#completeTotalCount");
+const completeKnownCount = document.querySelector("#completeKnownCount");
+const completeUnclearCount = document.querySelector("#completeUnclearCount");
+const completeForgotCount = document.querySelector("#completeForgotCount");
 
-startButton.addEventListener("click", startPractice);
+startButton.addEventListener("click", startRound);
 backHomeButton.addEventListener("click", showHome);
 flashcard.addEventListener("click", flipCard);
-nextButton.addEventListener("click", showNextCard);
+nextButton.addEventListener("click", () => handleReviewAnswer("unclear"));
 resetButton.addEventListener("click", resetProgress);
+restartRoundButton.addEventListener("click", startRound);
 
 ratingButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    updateFamiliarity(button.dataset.rating);
+    handleReviewAnswer(button.dataset.rating);
   });
 });
 
@@ -190,6 +204,15 @@ function saveProgress() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
 }
 
+function createEmptyRoundStats() {
+  return {
+    totalCards: 0,
+    familiarCount: 0,
+    unclearCount: 0,
+    forgotCount: 0
+  };
+}
+
 function renderHome() {
   dueCount.textContent = getDueCards().length;
   totalCount.textContent = vocabulary.length;
@@ -260,6 +283,7 @@ async function selectWordbook(wordbookId) {
 
   selectedWordbook = nextWordbook;
   vocabulary = [];
+  resetRoundState();
   startButton.disabled = true;
   renderHome();
   setStatusMessage("單字資料載入中...");
@@ -306,17 +330,19 @@ function startOfToday() {
   return now.getTime();
 }
 
-function startPractice() {
+function startRound() {
   if (vocabulary.length === 0) {
     setStatusMessage(selectedWordbook ? "這個單字本目前沒有單字" : "請先選擇單字本");
     return;
   }
 
-  const dueCards = getDueCards();
-  // 如果今天沒有待複習，就讓使用者練習全部單字，避免按鈕按了卻沒東西看。
-  practiceQueue = dueCards.length > 0 ? dueCards : [...vocabulary];
-  currentIndex = 0;
-  selectedRating = null;
+  roundCards = pickRandomCards(vocabulary, 10);
+  reviewQueue = [...roundCards];
+  roundStats = {
+    ...createEmptyRoundStats(),
+    totalCards: roundCards.length
+  };
+
   showPractice();
   renderCurrentCard();
 }
@@ -324,6 +350,7 @@ function startPractice() {
 function showHome() {
   homeView.classList.add("is-active");
   practiceView.classList.remove("is-active");
+  resetPracticeView();
   renderHome();
 }
 
@@ -333,49 +360,69 @@ function showPractice() {
 }
 
 function renderCurrentCard() {
-  const card = practiceQueue[currentIndex];
+  if (reviewQueue.length === 0) {
+    showRoundComplete();
+    return;
+  }
+
+  const card = reviewQueue[0];
 
   flashcard.classList.remove("is-flipped");
-  selectedRating = null;
   ratingButtons.forEach((button) => button.classList.remove("is-selected"));
-  cardProgress.textContent = `第 ${currentIndex + 1} 張 / 共 ${practiceQueue.length} 張`;
+  flashcard.hidden = false;
+  answerActions.hidden = false;
+  completeView.classList.remove("is-visible");
+  cardProgress.textContent = `剩餘 ${reviewQueue.length} 張`;
   wordCategory.textContent = card.category;
   wordText.textContent = card.word;
   partOfSpeech.textContent = card.partOfSpeech;
   meaningText.textContent = card.meaning;
   exampleText.textContent = card.example;
   translationText.textContent = card.translation;
+  updateRoundStatsView();
 }
 
 function flipCard() {
   flashcard.classList.toggle("is-flipped");
 }
 
-function updateFamiliarity(rating) {
-  const card = practiceQueue[currentIndex];
-  const alreadyAnswered = selectedRating !== null;
-  const previousRating = selectedRating;
+function handleReviewAnswer(rating) {
+  if (reviewQueue.length === 0) {
+    showRoundComplete();
+    return;
+  }
+
+  const card = reviewQueue.shift();
+  updateSavedProgress(card, rating);
+
+  if (rating === "known") {
+    roundStats.familiarCount += 1;
+  } else if (rating === "unclear") {
+    roundStats.unclearCount += 1;
+    insertCardBackIntoQueue(card, 4);
+  } else {
+    roundStats.forgotCount += 1;
+    insertCardBackIntoQueue(card, 2);
+  }
+
+  if (reviewQueue.length === 0) {
+    showRoundComplete();
+    return;
+  }
+
+  renderCurrentCard();
+}
+
+function updateSavedProgress(card, rating) {
   const oldRecord = progress.words[card.id] || {
     familiarity: 0,
     timesReviewed: 0
   };
   const familiarity = getNextFamiliarity(oldRecord.familiarity, rating);
 
-  selectedRating = rating;
-  ratingButtons.forEach((button) => {
-    button.classList.toggle("is-selected", button.dataset.rating === rating);
-  });
+  progress.totalAnswers += 1;
 
-  // 同一張卡片可以改答案，但只把第一次選擇算進總答題數。
-  if (!alreadyAnswered) {
-    progress.totalAnswers += 1;
-  }
-
-  if (!alreadyAnswered && rating === "known") {
-    progress.correctAnswers += 1;
-  } else if (alreadyAnswered && previousRating === "known" && rating !== "known") {
-    progress.correctAnswers = Math.max(0, progress.correctAnswers - 1);
-  } else if (alreadyAnswered && previousRating !== "known" && rating === "known") {
+  if (rating === "known") {
     progress.correctAnswers += 1;
   }
 
@@ -388,6 +435,11 @@ function updateFamiliarity(rating) {
   };
 
   saveProgress();
+}
+
+function insertCardBackIntoQueue(card, distance) {
+  const insertIndex = Math.min(distance, reviewQueue.length);
+  reviewQueue.splice(insertIndex, 0, card);
 }
 
 function getNextFamiliarity(currentFamiliarity, rating) {
@@ -413,16 +465,6 @@ function getNextReviewDate(familiarity, rating) {
   return startOfToday() + intervals[rating] * MS_PER_DAY;
 }
 
-function showNextCard() {
-  if (currentIndex < practiceQueue.length - 1) {
-    currentIndex += 1;
-    renderCurrentCard();
-    return;
-  }
-
-  showHome();
-}
-
 function resetProgress() {
   const confirmed = window.confirm("確定要清除所有學習紀錄嗎？");
 
@@ -433,6 +475,48 @@ function resetProgress() {
   progress = createEmptyProgress();
   saveProgress();
   renderHome();
+}
+
+function pickRandomCards(cards, count) {
+  return [...cards]
+    .sort(() => Math.random() - 0.5)
+    .slice(0, Math.min(count, cards.length));
+}
+
+function updateRoundStatsView() {
+  const remainingToFamiliar = Math.max(0, roundStats.totalCards - roundStats.familiarCount);
+
+  practiceWordbookName.textContent = selectedWordbook ? selectedWordbook.name : "尚未選擇";
+  roundTotalCount.textContent = roundStats.totalCards;
+  roundKnownCount.textContent = roundStats.familiarCount;
+  roundRemainingCount.textContent = remainingToFamiliar;
+  roundUnclearCount.textContent = roundStats.unclearCount;
+  roundForgotCount.textContent = roundStats.forgotCount;
+}
+
+function showRoundComplete() {
+  flashcard.hidden = true;
+  answerActions.hidden = true;
+  completeView.classList.add("is-visible");
+  cardProgress.textContent = "本輪完成";
+  updateRoundStatsView();
+
+  completeTotalCount.textContent = roundStats.totalCards;
+  completeKnownCount.textContent = roundStats.familiarCount;
+  completeUnclearCount.textContent = roundStats.unclearCount;
+  completeForgotCount.textContent = roundStats.forgotCount;
+}
+
+function resetPracticeView() {
+  flashcard.hidden = false;
+  answerActions.hidden = false;
+  completeView.classList.remove("is-visible");
+}
+
+function resetRoundState() {
+  reviewQueue = [];
+  roundCards = [];
+  roundStats = createEmptyRoundStats();
 }
 
 function setStatusMessage(message, isError = false) {

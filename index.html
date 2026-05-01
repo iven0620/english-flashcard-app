@@ -22,7 +22,7 @@
           <p id="selectedWordbookName" class="eyebrow">請先選擇單字本</p>
           <h2 id="homeTitle">選一本單字本，開始今天的練習。</h2>
         </div>
-        <button id="startButton" class="primary-button" type="button" disabled>開始練習</button>
+        <button id="startButton" class="primary-button" type="button" disabled>開始 10 題練習</button>
       </div>
 
       <section class="stats-grid" aria-label="學習統計">
@@ -57,23 +57,51 @@
       <div class="practice-header">
         <button id="backHomeButton" class="secondary-button" type="button">返回單字本列表</button>
         <div>
-          <p id="cardProgress" class="eyebrow">第 1 張</p>
+          <p id="cardProgress" class="eyebrow">本輪 10 題</p>
           <h2 id="practiceTitle">練習單字卡</h2>
         </div>
       </div>
+
+      <section class="round-stats" aria-label="本輪統計">
+        <article>
+          <span>單字本</span>
+          <strong id="practiceWordbookName">尚未選擇</strong>
+        </article>
+        <article>
+          <span>本輪總題數</span>
+          <strong id="roundTotalCount">0</strong>
+        </article>
+        <article>
+          <span>已熟悉</span>
+          <strong id="roundKnownCount">0</strong>
+        </article>
+        <article>
+          <span>剩餘待熟悉</span>
+          <strong id="roundRemainingCount">0</strong>
+        </article>
+        <article>
+          <span>模糊次數</span>
+          <strong id="roundUnclearCount">0</strong>
+        </article>
+        <article>
+          <span>沒看過次數</span>
+          <strong id="roundForgotCount">0</strong>
+        </article>
+      </section>
 
       <button id="flashcard" class="flashcard" type="button" aria-label="點擊翻面">
         <div class="card-inner">
           <article class="card-face card-front">
             <span id="wordCategory" class="category-pill">TOEIC</span>
             <h3 id="wordText">Vocabulary</h3>
-            <p id="partOfSpeech">noun</p>
             <span class="tap-hint">點擊卡片查看解釋</span>
           </article>
 
           <article class="card-face card-back">
             <span class="card-section-title">中文意思</span>
             <h3 id="meaningText">意思</h3>
+            <span class="card-section-title">詞性</span>
+            <p id="partOfSpeech">noun</p>
             <span class="card-section-title">英文例句</span>
             <p id="exampleText">Example sentence.</p>
             <span class="card-section-title">中文翻譯</span>
@@ -83,11 +111,35 @@
       </button>
 
       <div class="answer-actions" aria-label="練習操作">
-        <button class="rating-button is-low" type="button" data-rating="forgot">不認識</button>
+        <button class="rating-button is-low" type="button" data-rating="forgot">沒看過</button>
         <button class="rating-button is-mid" type="button" data-rating="unclear">模糊</button>
-        <button class="rating-button is-high" type="button" data-rating="known">認識</button>
+        <button class="rating-button is-high" type="button" data-rating="known">熟悉</button>
         <button id="nextButton" class="secondary-button" type="button">下一張</button>
       </div>
+
+      <section id="completeView" class="complete-panel" aria-label="本輪完成">
+        <p class="eyebrow">Round Complete</p>
+        <h2>本輪完成</h2>
+        <div class="complete-stats">
+          <article>
+            <span>本輪題數</span>
+            <strong id="completeTotalCount">0</strong>
+          </article>
+          <article>
+            <span>熟悉次數</span>
+            <strong id="completeKnownCount">0</strong>
+          </article>
+          <article>
+            <span>模糊次數</span>
+            <strong id="completeUnclearCount">0</strong>
+          </article>
+          <article>
+            <span>沒看過次數</span>
+            <strong id="completeForgotCount">0</strong>
+          </article>
+        </div>
+        <button id="restartRoundButton" class="primary-button" type="button">再練 10 題</button>
+      </section>
     </section>
   </main>
 
