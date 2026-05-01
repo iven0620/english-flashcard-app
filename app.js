@@ -18,6 +18,7 @@ let currentPracticeMode = "normal";
 const homeView = document.querySelector("#homeView");
 const practiceView = document.querySelector("#practiceView");
 const startButton = document.querySelector("#startButton");
+const dailyTaskButton = document.querySelector("#dailyTaskButton");
 const mistakeBookButton = document.querySelector("#mistakeBookButton");
 const backHomeButton = document.querySelector("#backHomeButton");
 const resetButton = document.querySelector("#resetButton");
@@ -55,6 +56,7 @@ const completeUnclearCount = document.querySelector("#completeUnclearCount");
 const completeForgotCount = document.querySelector("#completeForgotCount");
 
 startButton.addEventListener("click", startRound);
+dailyTaskButton.addEventListener("click", startDailyTaskRound);
 mistakeBookButton.addEventListener("click", startMistakeBookRound);
 backHomeButton.addEventListener("click", showHome);
 flashcard.addEventListener("click", flipCard);
@@ -207,6 +209,61 @@ async function loadMistakeCardsFromSupabase() {
   return (vocabularyRows || []).map(mapVocabularyRow);
 }
 
+async function loadReviewedVocabularyIdsFromSupabase() {
+  if (!supabaseClient) {
+    throw new Error("Supabase client is not ready.");
+  }
+
+  const { data, error } = await supabaseClient
+    .from("study_records")
+    .select("vocabulary_id");
+
+  if (error) {
+    throw error;
+  }
+
+  return new Set((data || [])
+    .map((record) => record.vocabulary_id)
+    .filter(Boolean)
+    .map(String));
+}
+
+async function loadCardsByStudyStatus(status, limit) {
+  if (!supabaseClient) {
+    throw new Error("Supabase client is not ready.");
+  }
+
+  const { data: records, error: recordsError } = await supabaseClient
+    .from("study_records")
+    .select("vocabulary_id, status")
+    .eq("status", status);
+
+  if (recordsError) {
+    throw recordsError;
+  }
+
+  const vocabularyIds = [...new Set((records || [])
+    .map((record) => record.vocabulary_id)
+    .filter(Boolean)
+    .map(String))];
+
+  if (vocabularyIds.length === 0) {
+    return [];
+  }
+
+  const selectedIds = pickRandomItems(vocabularyIds, limit);
+  const { data: vocabularyRows, error: vocabularyError } = await supabaseClient
+    .from("vocabularies")
+    .select("id, wordbook_id, word, part_of_speech, meaning_zh, example_en, example_zh, category, difficulty, created_at")
+    .in("id", selectedIds);
+
+  if (vocabularyError) {
+    throw vocabularyError;
+  }
+
+  return (vocabularyRows || []).map(mapVocabularyRow);
+}
+
 function mapVocabularyRow(item) {
   return {
     id: String(item.id),
@@ -264,6 +321,7 @@ function renderHome() {
   accuracyRate.textContent = getAccuracyText();
   selectedWordbookName.textContent = selectedWordbook ? selectedWordbook.name : "請先選擇單字本";
   startButton.disabled = vocabulary.length === 0;
+  dailyTaskButton.disabled = vocabulary.length === 0;
   renderWordbooks();
   renderCategories();
 }
@@ -406,10 +464,47 @@ async function startMistakeBookRound() {
   }
 }
 
-function startRoundWithCards(cards, mode) {
+async function startDailyTaskRound() {
+  if (vocabulary.length === 0) {
+    setStatusMessage(selectedWordbook ? "這個單字本目前沒有單字" : "請先選擇單字本");
+    return;
+  }
+
+  setStatusMessage("今日任務載入中...");
+  dailyTaskButton.disabled = true;
+
+  try {
+    const reviewedIds = await loadReviewedVocabularyIdsFromSupabase();
+    const newCards = pickRandomItems(
+      vocabulary.filter((card) => !reviewedIds.has(card.id)),
+      20
+    );
+    const unknownCards = await loadCardsByStudyStatus("unknown", 20);
+    const uncertainCards = await loadCardsByStudyStatus("uncertain", 10);
+    const dailyCards = uniqueCards([
+      ...newCards,
+      ...unknownCards,
+      ...uncertainCards
+    ]);
+
+    if (dailyCards.length === 0) {
+      setStatusMessage("目前沒有可用的今日任務，請先完成一輪練習");
+      return;
+    }
+
+    startRoundWithCards(dailyCards, "daily", dailyCards.length);
+  } catch (error) {
+    console.error("Failed to load daily task:", error);
+    setStatusMessage("資料讀取失敗，請稍後再試", true);
+  } finally {
+    dailyTaskButton.disabled = vocabulary.length === 0;
+  }
+}
+
+function startRoundWithCards(cards, mode, count = 10) {
   setStatusMessage("");
   currentPracticeMode = mode;
-  roundCards = pickRandomCards(cards, 10);
+  roundCards = pickRandomItems(cards, count);
   reviewQueue = [...roundCards];
   roundStats = {
     ...createEmptyRoundStats(),
@@ -421,6 +516,11 @@ function startRoundWithCards(cards, mode) {
 }
 
 function restartCurrentRound() {
+  if (currentPracticeMode === "daily") {
+    void startDailyTaskRound();
+    return;
+  }
+
   if (currentPracticeMode === "mistakes") {
     void startMistakeBookRound();
     return;
@@ -598,19 +698,34 @@ function resetProgress() {
   renderHome();
 }
 
-function pickRandomCards(cards, count) {
-  return [...cards]
+function pickRandomItems(items, count) {
+  return [...items]
     .sort(() => Math.random() - 0.5)
-    .slice(0, Math.min(count, cards.length));
+    .slice(0, Math.min(count, items.length));
+}
+
+function uniqueCards(cards) {
+  const seenIds = new Set();
+
+  return cards.filter((card) => {
+    if (seenIds.has(card.id)) {
+      return false;
+    }
+
+    seenIds.add(card.id);
+    return true;
+  });
 }
 
 function updateRoundStatsView() {
   const remainingToFamiliar = Math.max(0, roundStats.totalCards - roundStats.familiarCount);
 
-  practiceModeName.textContent = currentPracticeMode === "mistakes" ? "錯題本練習" : "一般練習";
+  practiceModeName.textContent = getPracticeModeLabel();
   practiceWordbookName.textContent = currentPracticeMode === "mistakes"
     ? "錯題本"
-    : selectedWordbook ? selectedWordbook.name : "尚未選擇";
+    : currentPracticeMode === "daily"
+      ? "今日任務"
+      : selectedWordbook ? selectedWordbook.name : "尚未選擇";
   roundTotalCount.textContent = roundStats.totalCards;
   roundKnownCount.textContent = roundStats.familiarCount;
   roundRemainingCount.textContent = remainingToFamiliar;
@@ -642,6 +757,18 @@ function resetRoundState() {
   roundCards = [];
   roundStats = createEmptyRoundStats();
   currentPracticeMode = "normal";
+}
+
+function getPracticeModeLabel() {
+  if (currentPracticeMode === "daily") {
+    return "今日任務";
+  }
+
+  if (currentPracticeMode === "mistakes") {
+    return "錯題本練習";
+  }
+
+  return "一般練習";
 }
 
 function setStatusMessage(message, isError = false) {

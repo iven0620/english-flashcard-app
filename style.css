@@ -181,12 +181,57 @@ h2 {
 }
 
 .wordbook-panel,
+.daily-task-panel,
 .category-panel {
   padding: 24px;
 }
 
+.daily-task-panel,
 .wordbook-panel {
   margin-bottom: 22px;
+}
+
+.daily-task-panel {
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) 2fr auto;
+  gap: 16px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.daily-task-panel h3 {
+  margin-bottom: 0;
+}
+
+.daily-task-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.daily-task-list article {
+  min-height: 92px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdff;
+}
+
+.daily-task-list strong,
+.daily-task-list span {
+  display: block;
+}
+
+.daily-task-list strong {
+  margin-bottom: 8px;
+}
+
+.daily-task-list span {
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.45;
 }
 
 .status-message {
@@ -526,10 +571,16 @@ h2 {
   }
 
   .intro,
+  .daily-task-panel,
   .wordbook-panel,
   .category-panel,
   .stat-card {
     padding: 20px;
+  }
+
+  .daily-task-panel,
+  .daily-task-list {
+    grid-template-columns: 1fr;
   }
 
   .flashcard {
