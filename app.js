@@ -13,10 +13,12 @@ let progress = loadProgress();
 let reviewQueue = [];
 let roundCards = [];
 let roundStats = createEmptyRoundStats();
+let currentPracticeMode = "normal";
 
 const homeView = document.querySelector("#homeView");
 const practiceView = document.querySelector("#practiceView");
 const startButton = document.querySelector("#startButton");
+const mistakeBookButton = document.querySelector("#mistakeBookButton");
 const backHomeButton = document.querySelector("#backHomeButton");
 const resetButton = document.querySelector("#resetButton");
 const flashcard = document.querySelector("#flashcard");
@@ -41,6 +43,7 @@ const meaningText = document.querySelector("#meaningText");
 const exampleText = document.querySelector("#exampleText");
 const translationText = document.querySelector("#translationText");
 const practiceWordbookName = document.querySelector("#practiceWordbookName");
+const practiceModeName = document.querySelector("#practiceModeName");
 const roundTotalCount = document.querySelector("#roundTotalCount");
 const roundKnownCount = document.querySelector("#roundKnownCount");
 const roundRemainingCount = document.querySelector("#roundRemainingCount");
@@ -52,11 +55,12 @@ const completeUnclearCount = document.querySelector("#completeUnclearCount");
 const completeForgotCount = document.querySelector("#completeForgotCount");
 
 startButton.addEventListener("click", startRound);
+mistakeBookButton.addEventListener("click", startMistakeBookRound);
 backHomeButton.addEventListener("click", showHome);
 flashcard.addEventListener("click", flipCard);
 nextButton.addEventListener("click", () => handleReviewAnswer("unclear"));
 resetButton.addEventListener("click", resetProgress);
-restartRoundButton.addEventListener("click", startRound);
+restartRoundButton.addEventListener("click", restartCurrentRound);
 
 ratingButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -164,6 +168,47 @@ async function loadVocabulariesFromSupabase(wordbookId) {
 
   // 把資料庫欄位名稱轉成原本單字卡使用的欄位名稱，後面的練習邏輯就不用大改。
   return (data || []).map((item) => ({
+    ...mapVocabularyRow(item)
+  }));
+}
+
+async function loadMistakeCardsFromSupabase() {
+  if (!supabaseClient) {
+    throw new Error("Supabase client is not ready.");
+  }
+
+  const { data: records, error: recordsError } = await supabaseClient
+    .from("study_records")
+    .select("vocabulary_id, status")
+    .in("status", ["unknown", "uncertain"]);
+
+  if (recordsError) {
+    throw recordsError;
+  }
+
+  const vocabularyIds = [...new Set((records || [])
+    .map((record) => record.vocabulary_id)
+    .filter(Boolean)
+    .map(String))];
+
+  if (vocabularyIds.length === 0) {
+    return [];
+  }
+
+  const { data: vocabularyRows, error: vocabularyError } = await supabaseClient
+    .from("vocabularies")
+    .select("id, wordbook_id, word, part_of_speech, meaning_zh, example_en, example_zh, category, difficulty, created_at")
+    .in("id", vocabularyIds);
+
+  if (vocabularyError) {
+    throw vocabularyError;
+  }
+
+  return (vocabularyRows || []).map(mapVocabularyRow);
+}
+
+function mapVocabularyRow(item) {
+  return {
     id: String(item.id),
     wordbookId: String(item.wordbook_id),
     word: item.word || "",
@@ -173,7 +218,7 @@ async function loadVocabulariesFromSupabase(wordbookId) {
     example: item.example_en || "",
     translation: item.example_zh || "",
     difficulty: item.difficulty || ""
-  }));
+  };
 }
 
 function loadProgress() {
@@ -336,7 +381,35 @@ function startRound() {
     return;
   }
 
-  roundCards = pickRandomCards(vocabulary, 10);
+  startRoundWithCards(vocabulary, "normal");
+}
+
+async function startMistakeBookRound() {
+  setStatusMessage("錯題本載入中...");
+  mistakeBookButton.disabled = true;
+
+  try {
+    const mistakeCards = await loadMistakeCardsFromSupabase();
+
+    if (mistakeCards.length === 0) {
+      setStatusMessage("目前沒有錯題，請先完成一輪練習");
+      return;
+    }
+
+    setStatusMessage("");
+    startRoundWithCards(mistakeCards, "mistakes");
+  } catch (error) {
+    console.error("Failed to load mistake book:", error);
+    setStatusMessage("資料讀取失敗，請稍後再試", true);
+  } finally {
+    mistakeBookButton.disabled = false;
+  }
+}
+
+function startRoundWithCards(cards, mode) {
+  setStatusMessage("");
+  currentPracticeMode = mode;
+  roundCards = pickRandomCards(cards, 10);
   reviewQueue = [...roundCards];
   roundStats = {
     ...createEmptyRoundStats(),
@@ -345,6 +418,15 @@ function startRound() {
 
   showPractice();
   renderCurrentCard();
+}
+
+function restartCurrentRound() {
+  if (currentPracticeMode === "mistakes") {
+    void startMistakeBookRound();
+    return;
+  }
+
+  startRound();
 }
 
 function showHome() {
@@ -394,6 +476,7 @@ function handleReviewAnswer(rating) {
 
   const card = reviewQueue.shift();
   updateSavedProgress(card, rating);
+  void saveStudyRecord(card, rating);
 
   if (rating === "known") {
     roundStats.familiarCount += 1;
@@ -435,6 +518,44 @@ function updateSavedProgress(card, rating) {
   };
 
   saveProgress();
+}
+
+async function saveStudyRecord(card, rating) {
+  if (!supabaseClient) {
+    console.error("Study record was not saved because Supabase client is not ready.");
+    return;
+  }
+
+  try {
+    const record = createStudyRecordPayload(card, rating);
+    const { error } = await supabaseClient
+      .from("study_records")
+      .insert([record]);
+
+    if (error) {
+      console.error("Failed to save study record:", error);
+    }
+  } catch (error) {
+    console.error("Failed to save study record:", error);
+  }
+}
+
+function createStudyRecordPayload(card, rating) {
+  const statusMap = {
+    known: "known",
+    unclear: "uncertain",
+    forgot: "unknown"
+  };
+
+  return {
+    vocabulary_id: card.id,
+    status: statusMap[rating],
+    review_count: 1,
+    known_count: rating === "known" ? 1 : 0,
+    uncertain_count: rating === "unclear" ? 1 : 0,
+    unknown_count: rating === "forgot" ? 1 : 0,
+    last_reviewed_at: new Date().toISOString()
+  };
 }
 
 function insertCardBackIntoQueue(card, distance) {
@@ -486,7 +607,10 @@ function pickRandomCards(cards, count) {
 function updateRoundStatsView() {
   const remainingToFamiliar = Math.max(0, roundStats.totalCards - roundStats.familiarCount);
 
-  practiceWordbookName.textContent = selectedWordbook ? selectedWordbook.name : "尚未選擇";
+  practiceModeName.textContent = currentPracticeMode === "mistakes" ? "錯題本練習" : "一般練習";
+  practiceWordbookName.textContent = currentPracticeMode === "mistakes"
+    ? "錯題本"
+    : selectedWordbook ? selectedWordbook.name : "尚未選擇";
   roundTotalCount.textContent = roundStats.totalCards;
   roundKnownCount.textContent = roundStats.familiarCount;
   roundRemainingCount.textContent = remainingToFamiliar;
@@ -517,6 +641,7 @@ function resetRoundState() {
   reviewQueue = [];
   roundCards = [];
   roundStats = createEmptyRoundStats();
+  currentPracticeMode = "normal";
 }
 
 function setStatusMessage(message, isError = false) {

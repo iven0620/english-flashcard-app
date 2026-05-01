@@ -92,6 +92,13 @@ h2 {
   box-shadow: var(--shadow);
 }
 
+.intro-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
 .primary-button,
 .secondary-button,
 .icon-button,
@@ -134,6 +141,13 @@ h2 {
 .icon-button:hover {
   border-color: #b8c7da;
   background: var(--surface-soft);
+}
+
+.secondary-button:disabled,
+.icon-button:disabled {
+  cursor: not-allowed;
+  color: var(--muted);
+  background: #f1f5f9;
 }
 
 .stats-grid {
@@ -284,7 +298,7 @@ h2 {
 
 .round-stats {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   gap: 10px;
   margin-bottom: 18px;
 }
@@ -490,6 +504,14 @@ h2 {
   .practice-header {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .intro-actions {
+    justify-content: stretch;
+  }
+
+  .intro-actions button {
+    width: 100%;
   }
 
   .practice-header div {
