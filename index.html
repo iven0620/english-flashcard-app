@@ -16,87 +16,110 @@
           <h1>English Flashcards</h1>
         </div>
       </div>
-      <button id="resetButton" class="icon-button" type="button" title="重置本機學習紀錄">重置</button>
+      <button id="resetButton" class="icon-button" type="button" title="&#37325;&#32622;&#26412;&#27231;&#23416;&#32722;&#32000;&#37636;">&#37325;&#32622;</button>
     </header>
 
     <section id="homeView" class="view is-active" aria-labelledby="homeTitle">
       <section class="intro dashboard-hero">
         <div class="hero-content">
           <p class="eyebrow">AI TOEIC TRAINER</p>
-          <h2 id="homeTitle">每天 10 題，建立你的 TOEIC 單字力</h2>
-          <p class="hero-copy">以 Anki 節奏安排今日任務、錯題與高頻單字，讓每一次複習都更精準。</p>
+          <h2 id="homeTitle">&#27599;&#22825; 10 &#38988;&#65292;&#24314;&#31435;&#20320;&#30340; TOEIC &#21934;&#23383;&#21147;</h2>
+          <p class="hero-copy">&#20197; Anki &#31680;&#22863;&#23433;&#25490;&#20170;&#26085;&#20219;&#21209;&#12289;&#37679;&#38988;&#33287;&#39640;&#38971;&#21934;&#23383;&#65292;&#35731;&#27599;&#19968;&#27425;&#35079;&#32722;&#37117;&#26356;&#31934;&#28310;&#12290;</p>
         </div>
-        <aside class="hero-action-card" aria-label="主要練習操作">
-          <span class="hero-card-label">目前單字本</span>
-          <p id="selectedWordbookName" class="selected-wordbook-pill">請先選擇單字本</p>
+        <aside class="hero-action-card" aria-label="&#20027;&#35201;&#32244;&#32722;&#25805;&#20316;">
+          <span class="hero-card-label">&#30446;&#21069;&#21934;&#23383;&#26412;</span>
+          <p id="selectedWordbookName" class="selected-wordbook-pill">&#35531;&#20808;&#36984;&#25799;&#21934;&#23383;&#26412;</p>
           <div class="intro-actions">
-            <button id="startButton" class="primary-button" type="button" disabled>開始 10 題練習</button>
-            <button id="mistakeBookButton" class="secondary-button" type="button">錯題本</button>
+            <button id="startButton" class="primary-button" type="button" disabled>&#38283;&#22987; 10 &#38988;&#32244;&#32722;</button>
+            <button id="mistakeBookButton" class="secondary-button" type="button">&#37679;&#38988;&#26412;</button>
           </div>
         </aside>
       </section>
 
-      <section class="stats-grid" aria-label="學習統計">
+      <section class="stats-grid" aria-label="&#23416;&#32722;&#32113;&#35336;">
         <article class="stat-card">
           <span class="stat-icon" aria-hidden="true">01</span>
-          <span class="stat-label">今日待複習</span>
+          <span class="stat-label">&#20170;&#26085;&#24453;&#35079;&#32722;</span>
           <strong id="dueCount">0</strong>
-          <p>今天適合再次練習的單字數。</p>
+          <p>&#20170;&#22825;&#36969;&#21512;&#20877;&#27425;&#32244;&#32722;&#30340;&#21934;&#23383;&#25976;&#12290;</p>
         </article>
         <article class="stat-card">
           <span class="stat-icon" aria-hidden="true">02</span>
-          <span class="stat-label">總單字數</span>
+          <span class="stat-label">&#32317;&#21934;&#23383;&#25976;</span>
           <strong id="totalCount">0</strong>
-          <p>目前選擇單字本中的單字總量。</p>
+          <p>&#30446;&#21069;&#36984;&#25799;&#21934;&#23383;&#26412;&#20013;&#30340;&#21934;&#23383;&#32317;&#37327;&#12290;</p>
         </article>
         <article class="stat-card">
           <span class="stat-icon" aria-hidden="true">03</span>
-          <span class="stat-label">正確率</span>
+          <span class="stat-label">&#27491;&#30906;&#29575;</span>
           <strong id="accuracyRate">0%</strong>
-          <p>依照本機練習紀錄計算。</p>
+          <p>&#20381;&#29031;&#26412;&#27231;&#32244;&#32722;&#32000;&#37636;&#35336;&#31639;&#12290;</p>
         </article>
       </section>
 
       <p id="statusMessage" class="status-message" role="status"></p>
 
-      <section class="daily-task-panel premium-mission-card" aria-label="今日任務">
+      <section class="daily-task-panel premium-mission-card" aria-label="&#20170;&#26085;&#20219;&#21209;">
         <div class="mission-copy">
           <p class="eyebrow">Daily Mission</p>
-          <h3>今日任務</h3>
-          <p>新單字、錯題與模糊單字的混合練習。</p>
+          <h3>&#20170;&#26085;&#20219;&#21209;</h3>
+          <p>&#26032;&#21934;&#23383;&#12289;&#37679;&#38988;&#33287;&#27169;&#31946;&#21934;&#23383;&#30340;&#28151;&#21512;&#32244;&#32722;&#12290;</p>
         </div>
         <div class="daily-task-list">
           <article>
-            <strong>新單字 20 題</strong>
-            <span>從目前單字本抽尚未練過的單字。</span>
+            <strong>&#26032;&#21934;&#23383; 20 &#38988;</strong>
+            <span>&#24478;&#30446;&#21069;&#21934;&#23383;&#26412;&#25277;&#23578;&#26410;&#32244;&#36942;&#30340;&#21934;&#23383;&#12290;</span>
           </article>
           <article>
-            <strong>錯題 20 題</strong>
-            <span>加強曾經沒看過的單字。</span>
+            <strong>&#37679;&#38988; 20 &#38988;</strong>
+            <span>&#21152;&#24375;&#26366;&#32147;&#27794;&#30475;&#36942;&#30340;&#21934;&#23383;&#12290;</span>
           </article>
           <article>
-            <strong>模糊 10 題</strong>
-            <span>複習曾經標記模糊的單字。</span>
+            <strong>&#27169;&#31946; 10 &#38988;</strong>
+            <span>&#35079;&#32722;&#26366;&#32147;&#27161;&#35352;&#27169;&#31946;&#30340;&#21934;&#23383;&#12290;</span>
           </article>
         </div>
-        <button id="dailyTaskButton" class="primary-button" type="button" disabled>開始今日任務</button>
+        <button id="dailyTaskButton" class="primary-button" type="button" disabled>&#38283;&#22987;&#20170;&#26085;&#20219;&#21209;</button>
       </section>
 
-      <section class="wordbook-panel" aria-label="單字本列表">
+      <section class="daily-task-panel phrase-panel" aria-label="&#27599;&#26085;&#39640;&#38971;&#29255;&#35486;">
+        <div class="mission-copy">
+          <p class="eyebrow">Daily Phrases</p>
+          <h3>&#27599;&#26085;&#39640;&#38971;&#29255;&#35486;</h3>
+          <p>&#27599;&#22825;&#32244; 10 &#20491; TOEIC / &#21830;&#21209;&#33521;&#25991;&#24120;&#35211;&#29255;&#35486;&#12290;</p>
+        </div>
+        <div class="daily-task-list phrase-feature-list">
+          <article>
+            <strong>TOEIC</strong>
+            <span>&#24120;&#35211;&#32887;&#22580;&#33287;&#32771;&#35430;&#29255;&#35486;&#12290;</span>
+          </article>
+          <article>
+            <strong>Business</strong>
+            <span>&#26371;&#35696;&#12289;&#37109;&#20214;&#33287;&#23458;&#25142;&#27798;&#36890;&#34920;&#36948;&#12290;</span>
+          </article>
+          <article>
+            <strong>Review</strong>
+            <span>&#29992;&#19977;&#20491;&#31561;&#32026;&#36861;&#36452;&#29255;&#35486;&#29087;&#24713;&#24230;&#12290;</span>
+          </article>
+        </div>
+        <button id="dailyPhraseButton" class="primary-button" type="button">&#38283;&#22987;&#29255;&#35486;&#32244;&#32722;</button>
+      </section>
+
+      <section class="wordbook-panel" aria-label="&#21934;&#23383;&#26412;&#21015;&#34920;">
         <div class="section-heading">
           <div>
             <p class="eyebrow">Library</p>
-            <h3>單字本</h3>
+            <h3>&#21934;&#23383;&#26412;</h3>
           </div>
         </div>
         <div id="wordbookList" class="wordbook-list"></div>
       </section>
 
-      <section class="category-panel" aria-label="單字分類">
+      <section class="category-panel" aria-label="&#21934;&#23383;&#20998;&#39006;">
         <div class="section-heading">
           <div>
             <p class="eyebrow">Categories</p>
-            <h3>分類概覽</h3>
+            <h3>&#20998;&#39006;&#27010;&#35261;</h3>
           </div>
         </div>
         <div id="categoryList" class="category-list"></div>
@@ -105,98 +128,119 @@
 
     <section id="practiceView" class="view" aria-labelledby="practiceTitle">
       <div class="practice-header">
-        <button id="backHomeButton" class="secondary-button" type="button">返回單字本</button>
+        <button id="backHomeButton" class="secondary-button" type="button">&#36820;&#22238;&#21934;&#23383;&#26412;</button>
         <div>
-          <p id="cardProgress" class="eyebrow">本輪 10 題</p>
-          <h2 id="practiceTitle">單字練習</h2>
+          <p id="cardProgress" class="eyebrow">&#26412;&#36650; 10 &#38988;</p>
+          <h2 id="practiceTitle">&#21934;&#23383;&#32244;&#32722;</h2>
         </div>
       </div>
 
-      <section class="round-stats" aria-label="本輪統計">
+      <section class="round-stats" aria-label="&#26412;&#36650;&#32113;&#35336;">
         <article>
-          <span>目前模式</span>
-          <strong id="practiceModeName">一般練習</strong>
+          <span>&#30446;&#21069;&#27169;&#24335;</span>
+          <strong id="practiceModeName">&#19968;&#33324;&#32244;&#32722;</strong>
         </article>
         <article>
-          <span>單字本</span>
-          <strong id="practiceWordbookName">尚未選擇</strong>
+          <span>&#21934;&#23383;&#26412;</span>
+          <strong id="practiceWordbookName">&#23578;&#26410;&#36984;&#25799;</strong>
         </article>
         <article>
-          <span>本輪題數</span>
+          <span>&#26412;&#36650;&#38988;&#25976;</span>
           <strong id="roundTotalCount">0</strong>
         </article>
         <article>
-          <span>已熟悉</span>
+          <span>&#24050;&#29087;&#24713;</span>
           <strong id="roundKnownCount">0</strong>
         </article>
         <article>
-          <span>剩餘待熟悉</span>
+          <span>&#21097;&#39192;&#24453;&#29087;&#24713;</span>
           <strong id="roundRemainingCount">0</strong>
         </article>
         <article>
-          <span>模糊次數</span>
+          <span>&#27169;&#31946;&#27425;&#25976;</span>
           <strong id="roundUnclearCount">0</strong>
         </article>
         <article>
-          <span>沒看過次數</span>
+          <span>&#27794;&#30475;&#36942;&#27425;&#25976;</span>
           <strong id="roundForgotCount">0</strong>
         </article>
       </section>
 
-      <button id="flashcard" class="flashcard" type="button" aria-label="點擊翻面">
+      <button id="flashcard" class="flashcard" type="button" aria-label="&#40670;&#25802;&#32763;&#38754;">
         <div class="card-inner">
           <article class="card-face card-front">
             <span id="wordCategory" class="category-pill">TOEIC</span>
             <h3 id="wordText">Vocabulary</h3>
-            <span class="tap-hint">點擊卡片查看答案</span>
+            <span class="tap-hint">&#40670;&#25802;&#21345;&#29255;&#26597;&#30475;&#31572;&#26696;</span>
           </article>
 
           <article class="card-face card-back">
-            <span class="card-section-title">中文意思</span>
-            <h3 id="meaningText">意思</h3>
-            <span class="card-section-title">詞性</span>
+            <span class="card-section-title">&#20013;&#25991;&#24847;&#24605;</span>
+            <h3 id="meaningText">&#24847;&#24605;</h3>
+            <span class="card-section-title">&#35422;&#24615;</span>
             <p id="partOfSpeech">noun</p>
-            <span class="card-section-title">英文例句</span>
+            <span class="card-section-title">&#33521;&#25991;&#20363;&#21477;</span>
             <p id="exampleText">Example sentence.</p>
-            <span class="card-section-title">中文翻譯</span>
-            <p id="translationText">例句翻譯</p>
+            <span class="card-section-title">&#20013;&#25991;&#32763;&#35695;</span>
+            <p id="translationText">&#20363;&#21477;&#32763;&#35695;</p>
           </article>
         </div>
       </button>
 
-      <div class="answer-actions" aria-label="熟悉度選擇">
-        <button class="rating-button is-low" type="button" data-rating="forgot">沒看過</button>
-        <button class="rating-button is-mid" type="button" data-rating="unclear">模糊</button>
-        <button class="rating-button is-high" type="button" data-rating="known">熟悉</button>
-        <button id="nextButton" class="secondary-button" type="button">下一張</button>
+      <button id="phraseCard" class="flashcard" type="button" aria-label="&#40670;&#25802;&#32763;&#38754;" hidden>
+        <div class="card-inner">
+          <article class="card-face card-front">
+            <span id="phraseMeta" class="category-pill">Phrase</span>
+            <h3 id="phraseText">Phrase</h3>
+            <span class="tap-hint">&#40670;&#25802;&#26597;&#30475;&#20013;&#25991;&#33287;&#20351;&#29992;&#26041;&#24335;</span>
+          </article>
+
+          <article class="card-face card-back">
+            <span class="card-section-title">&#20013;&#25991;&#24847;&#24605;</span>
+            <h3 id="phraseMeaning">&#24847;&#24605;</h3>
+            <span class="card-section-title">&#20351;&#29992;&#26041;&#24335;</span>
+            <p id="phraseUsage">&#20351;&#29992;&#26041;&#24335;</p>
+            <span class="card-section-title">&#33521;&#25991;&#20363;&#21477;</span>
+            <p id="phraseExampleEn">Example sentence.</p>
+            <span class="card-section-title">&#20013;&#25991;&#20363;&#21477;</span>
+            <p id="phraseExampleZh">&#20363;&#21477;&#32763;&#35695;</p>
+          </article>
+        </div>
+      </button>
+
+      <div class="answer-actions" aria-label="&#29087;&#24713;&#24230;&#36984;&#25799;">
+        <button class="rating-button is-low" type="button" data-rating="forgot">&#27794;&#30475;&#36942;</button>
+        <button class="rating-button is-mid" type="button" data-rating="unclear">&#27169;&#31946;</button>
+        <button class="rating-button is-high" type="button" data-rating="known">&#29087;&#24713;</button>
+        <button id="nextButton" class="secondary-button" type="button">&#19979;&#19968;&#24373;</button>
       </div>
 
-      <section id="completeView" class="complete-panel" aria-label="練習完成">
+      <section id="completeView" class="complete-panel" aria-label="&#32244;&#32722;&#23436;&#25104;">
         <p class="eyebrow">Round Complete</p>
-        <h2 id="completeTitle">本輪練習完成</h2>
-        <p id="completeMessage" class="complete-message">你已完成這次的單字複習</p>
+        <h2 id="completeTitle">&#26412;&#36650;&#32244;&#32722;&#23436;&#25104;</h2>
+        <p id="completeMessage" class="complete-message">&#20320;&#24050;&#23436;&#25104;&#36889;&#27425;&#30340;&#21934;&#23383;&#35079;&#32722;</p>
         <div class="complete-stats">
           <article>
-            <span>本輪題數</span>
+            <span>&#26412;&#36650;&#38988;&#25976;</span>
             <strong id="completeTotalCount">0</strong>
           </article>
           <article>
-            <span>已熟悉數</span>
+            <span>&#29087;&#24713;&#25976;</span>
             <strong id="completeKnownCount">0</strong>
           </article>
           <article>
-            <span>模糊數</span>
+            <span>&#27169;&#31946;&#25976;</span>
             <strong id="completeUnclearCount">0</strong>
           </article>
           <article>
-            <span>沒看過數</span>
+            <span>&#27794;&#30475;&#36942;&#25976;</span>
             <strong id="completeForgotCount">0</strong>
           </article>
         </div>
         <div class="complete-actions">
-          <button id="completeHomeButton" class="secondary-button" type="button">回到單字本</button>
-          <button id="restartRoundButton" class="primary-button" type="button">再練 10 題</button>
-          <button id="completeMistakeButton" class="secondary-button" type="button">練習錯題本</button>
+          <button id="completeHomeButton" class="secondary-button" type="button">&#22238;&#21040;&#39318;&#38913;</button>
+          <button id="restartRoundButton" class="primary-button" type="button">&#20877;&#32244; 10 &#38988;</button>
+          <button id="completeMistakeButton" class="secondary-button" type="button">&#32244;&#32722;&#37679;&#38988;&#26412;</button>
         </div>
       </section>
     </section>
