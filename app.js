@@ -1,11 +1,10 @@
-// TODO: 換成你的 Supabase 專案設定。不要使用 service_role 或 secret key。
 const SUPABASE_URL = "https://gcaiqgxpamblufeqxzjv.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_ya9qrXLyFN5YCjQkSrcZ5g_8wQMVWKE";
 const STORAGE_KEY = "englishFlashcardProgress";
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
+
 const supabaseClient = createSupabaseClient();
 
-// 集中保存會被改變的狀態，畫面更新時比較好追蹤。
 let wordbooks = [];
 let vocabulary = [];
 let selectedWordbook = null;
@@ -27,6 +26,10 @@ const nextButton = document.querySelector("#nextButton");
 const ratingButtons = document.querySelectorAll("[data-rating]");
 const answerActions = document.querySelector(".answer-actions");
 const completeView = document.querySelector("#completeView");
+const completeTitle = document.querySelector("#completeTitle");
+const completeMessage = document.querySelector("#completeMessage");
+const completeHomeButton = document.querySelector("#completeHomeButton");
+const completeMistakeButton = document.querySelector("#completeMistakeButton");
 const restartRoundButton = document.querySelector("#restartRoundButton");
 
 const dueCount = document.querySelector("#dueCount");
@@ -63,6 +66,8 @@ flashcard.addEventListener("click", flipCard);
 nextButton.addEventListener("click", () => handleReviewAnswer("unclear"));
 resetButton.addEventListener("click", resetProgress);
 restartRoundButton.addEventListener("click", restartCurrentRound);
+completeHomeButton?.addEventListener("click", showHome);
+completeMistakeButton?.addEventListener("click", startMistakeBookRound);
 
 ratingButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -73,21 +78,18 @@ ratingButtons.forEach((button) => {
 initializeApp();
 
 function createSupabaseClient() {
-  // CDN 載入成功後，Supabase client 會掛在 window.supabase 上。
+  // Supabase CDN 載入後會提供 window.supabase。
   if (typeof window === "undefined" || !window.supabase) {
     return null;
   }
 
-  try {
-    return window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-  } catch (error) {
-    return null;
-  }
+  return window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 }
 
 async function initializeApp() {
-  setStatusMessage("單字本載入中...");
+  setStatusMessage("正在讀取單字本...");
   startButton.disabled = true;
+  dailyTaskButton.disabled = true;
 
   try {
     wordbooks = await loadWordbooksFromSupabase();
@@ -102,10 +104,10 @@ async function initializeApp() {
 
     setStatusMessage("");
   } catch (error) {
+    console.error("Failed to initialize app:", error);
     wordbooks = [];
     vocabulary = [];
     selectedWordbook = null;
-    startButton.disabled = true;
     renderHome();
     setStatusMessage("資料讀取失敗，請稍後再試", true);
   }
@@ -116,33 +118,33 @@ async function loadWordbooksFromSupabase() {
     throw new Error("Supabase client is not ready.");
   }
 
-  const { data: wordbookRows, error: wordbookError } = await supabaseClient
+  const { data, error } = await supabaseClient
     .from("wordbooks")
     .select("id, name, description, level, created_at")
     .order("created_at", { ascending: true });
 
-  if (wordbookError) {
-    throw wordbookError;
+  if (error) {
+    throw error;
   }
 
-  const wordbooksWithBasicInfo = (wordbookRows || []).map((item) => ({
+  const basicWordbooks = (data || []).map((item) => ({
     id: String(item.id),
     name: item.name || "未命名單字本",
-    description: item.description || "尚未提供描述",
-    level: item.level || "未設定",
+    description: item.description || "尚未新增描述",
+    level: item.level || "general",
     createdAt: item.created_at || "",
   }));
 
-  // 用 head + count 只取得數量，不下載整份單字資料。
+  // 每一本單字本另外查詢 vocabularies 的數量，首頁卡片會用到。
   return Promise.all(
-    wordbooksWithBasicInfo.map(async (wordbook) => {
-      const { count, error } = await supabaseClient
+    basicWordbooks.map(async (wordbook) => {
+      const { count, error: countError } = await supabaseClient
         .from("vocabularies")
         .select("id", { count: "exact", head: true })
         .eq("wordbook_id", wordbook.id);
 
-      if (error) {
-        throw error;
+      if (countError) {
+        throw countError;
       }
 
       return {
@@ -168,10 +170,7 @@ async function loadVocabulariesFromSupabase(wordbookId) {
     throw error;
   }
 
-  // 把資料庫欄位名稱轉成原本單字卡使用的欄位名稱，後面的練習邏輯就不用大改。
-  return (data || []).map((item) => ({
-    ...mapVocabularyRow(item)
-  }));
+  return (data || []).map(mapVocabularyRow);
 }
 
 async function loadMistakeCardsFromSupabase() {
@@ -188,25 +187,13 @@ async function loadMistakeCardsFromSupabase() {
     throw recordsError;
   }
 
-  const vocabularyIds = [...new Set((records || [])
-    .map((record) => record.vocabulary_id)
-    .filter(Boolean)
-    .map(String))];
+  const vocabularyIds = uniqueVocabularyIds(records);
 
   if (vocabularyIds.length === 0) {
     return [];
   }
 
-  const { data: vocabularyRows, error: vocabularyError } = await supabaseClient
-    .from("vocabularies")
-    .select("id, wordbook_id, word, part_of_speech, meaning_zh, example_en, example_zh, category, difficulty, created_at")
-    .in("id", vocabularyIds);
-
-  if (vocabularyError) {
-    throw vocabularyError;
-  }
-
-  return (vocabularyRows || []).map(mapVocabularyRow);
+  return loadCardsByIds(vocabularyIds);
 }
 
 async function loadReviewedVocabularyIdsFromSupabase() {
@@ -222,10 +209,7 @@ async function loadReviewedVocabularyIdsFromSupabase() {
     throw error;
   }
 
-  return new Set((data || [])
-    .map((record) => record.vocabulary_id)
-    .filter(Boolean)
-    .map(String));
+  return new Set(uniqueVocabularyIds(data));
 }
 
 async function loadCardsByStudyStatus(status, limit) {
@@ -242,26 +226,33 @@ async function loadCardsByStudyStatus(status, limit) {
     throw recordsError;
   }
 
-  const vocabularyIds = [...new Set((records || [])
-    .map((record) => record.vocabulary_id)
-    .filter(Boolean)
-    .map(String))];
+  const selectedIds = pickRandomItems(uniqueVocabularyIds(records), limit);
 
-  if (vocabularyIds.length === 0) {
+  if (selectedIds.length === 0) {
     return [];
   }
 
-  const selectedIds = pickRandomItems(vocabularyIds, limit);
-  const { data: vocabularyRows, error: vocabularyError } = await supabaseClient
+  return loadCardsByIds(selectedIds);
+}
+
+async function loadCardsByIds(vocabularyIds) {
+  const { data, error } = await supabaseClient
     .from("vocabularies")
     .select("id, wordbook_id, word, part_of_speech, meaning_zh, example_en, example_zh, category, difficulty, created_at")
-    .in("id", selectedIds);
+    .in("id", vocabularyIds);
 
-  if (vocabularyError) {
-    throw vocabularyError;
+  if (error) {
+    throw error;
   }
 
-  return (vocabularyRows || []).map(mapVocabularyRow);
+  return (data || []).map(mapVocabularyRow);
+}
+
+function uniqueVocabularyIds(records) {
+  return [...new Set((records || [])
+    .map((record) => record.vocabulary_id)
+    .filter(Boolean)
+    .map(String))];
 }
 
 function mapVocabularyRow(item) {
@@ -279,7 +270,6 @@ function mapVocabularyRow(item) {
 }
 
 function loadProgress() {
-  // localStorage 只能存字串，所以讀出後要用 JSON.parse 轉回物件。
   const savedProgress = localStorage.getItem(STORAGE_KEY);
 
   if (!savedProgress) {
@@ -289,7 +279,6 @@ function loadProgress() {
   try {
     return { ...createEmptyProgress(), ...JSON.parse(savedProgress) };
   } catch (error) {
-    // 如果資料壞掉，回到乾淨狀態，避免整個頁面不能使用。
     return createEmptyProgress();
   }
 }
@@ -358,7 +347,7 @@ function renderWordbooks() {
 
 function renderCategories() {
   if (vocabulary.length === 0) {
-    categoryList.innerHTML = `<p class="empty-state">選擇單字本後會顯示分類資料</p>`;
+    categoryList.innerHTML = `<p class="empty-state">選擇單字本後會顯示分類</p>`;
     return;
   }
 
@@ -370,7 +359,7 @@ function renderCategories() {
   categoryList.innerHTML = Object.entries(categoryCounts)
     .map(([category, count]) => `
       <article class="category-item">
-        <strong>${category}</strong>
+        <strong>${escapeHtml(category)}</strong>
         <span>${count} 個單字</span>
       </article>
     `)
@@ -388,8 +377,9 @@ async function selectWordbook(wordbookId) {
   vocabulary = [];
   resetRoundState();
   startButton.disabled = true;
+  dailyTaskButton.disabled = true;
   renderHome();
-  setStatusMessage("單字資料載入中...");
+  setStatusMessage("正在讀取單字資料...");
 
   try {
     vocabulary = await loadVocabulariesFromSupabase(nextWordbook.id);
@@ -402,8 +392,8 @@ async function selectWordbook(wordbookId) {
 
     setStatusMessage("");
   } catch (error) {
+    console.error("Failed to load vocabularies:", error);
     vocabulary = [];
-    startButton.disabled = true;
     renderHome();
     setStatusMessage("資料讀取失敗，請稍後再試", true);
   }
@@ -414,8 +404,7 @@ function getAccuracyText() {
     return "0%";
   }
 
-  const rate = Math.round((progress.correctAnswers / progress.totalAnswers) * 100);
-  return `${rate}%`;
+  return `${Math.round((progress.correctAnswers / progress.totalAnswers) * 100)}%`;
 }
 
 function getDueCards() {
@@ -443,8 +432,9 @@ function startRound() {
 }
 
 async function startMistakeBookRound() {
-  setStatusMessage("錯題本載入中...");
+  setStatusMessage("正在讀取錯題本...");
   mistakeBookButton.disabled = true;
+  completeMistakeButton && (completeMistakeButton.disabled = true);
 
   try {
     const mistakeCards = await loadMistakeCardsFromSupabase();
@@ -461,6 +451,7 @@ async function startMistakeBookRound() {
     setStatusMessage("資料讀取失敗，請稍後再試", true);
   } finally {
     mistakeBookButton.disabled = false;
+    completeMistakeButton && (completeMistakeButton.disabled = false);
   }
 }
 
@@ -470,7 +461,7 @@ async function startDailyTaskRound() {
     return;
   }
 
-  setStatusMessage("今日任務載入中...");
+  setStatusMessage("正在建立今日任務...");
   dailyTaskButton.disabled = true;
 
   try {
@@ -492,6 +483,7 @@ async function startDailyTaskRound() {
       return;
     }
 
+    setStatusMessage("");
     startRoundWithCards(dailyCards, "daily", dailyCards.length);
   } catch (error) {
     console.error("Failed to load daily task:", error);
@@ -502,9 +494,16 @@ async function startDailyTaskRound() {
 }
 
 function startRoundWithCards(cards, mode, count = 10) {
+  const selectedCards = pickRandomItems(cards, count);
+
+  if (selectedCards.length === 0) {
+    setStatusMessage("目前沒有可練習的單字");
+    return;
+  }
+
   setStatusMessage("");
   currentPracticeMode = mode;
-  roundCards = pickRandomItems(cards, count);
+  roundCards = selectedCards;
   reviewQueue = [...roundCards];
   roundStats = {
     ...createEmptyRoundStats(),
@@ -539,21 +538,24 @@ function showHome() {
 function showPractice() {
   homeView.classList.remove("is-active");
   practiceView.classList.add("is-active");
+  resetPracticeView();
 }
 
 function renderCurrentCard() {
   if (reviewQueue.length === 0) {
-    showRoundComplete();
+    renderPracticeComplete();
     return;
   }
 
   const card = reviewQueue[0];
 
-  flashcard.classList.remove("is-flipped");
+  flashcard.classList.remove("is-flipped", "is-hidden");
+  answerActions.classList.remove("is-hidden");
   ratingButtons.forEach((button) => button.classList.remove("is-selected"));
   flashcard.hidden = false;
   answerActions.hidden = false;
   completeView.classList.remove("is-visible");
+
   cardProgress.textContent = `剩餘 ${reviewQueue.length} 張`;
   wordCategory.textContent = card.category;
   wordText.textContent = card.word;
@@ -565,12 +567,16 @@ function renderCurrentCard() {
 }
 
 function flipCard() {
+  if (reviewQueue.length === 0) {
+    return;
+  }
+
   flashcard.classList.toggle("is-flipped");
 }
 
 function handleReviewAnswer(rating) {
   if (reviewQueue.length === 0) {
-    showRoundComplete();
+    renderPracticeComplete();
     return;
   }
 
@@ -589,7 +595,7 @@ function handleReviewAnswer(rating) {
   }
 
   if (reviewQueue.length === 0) {
-    showRoundComplete();
+    renderPracticeComplete();
     return;
   }
 
@@ -627,10 +633,9 @@ async function saveStudyRecord(card, rating) {
   }
 
   try {
-    const record = createStudyRecordPayload(card, rating);
     const { error } = await supabaseClient
       .from("study_records")
-      .insert([record]);
+      .insert([createStudyRecordPayload(card, rating)]);
 
     if (error) {
       console.error("Failed to save study record:", error);
@@ -676,7 +681,6 @@ function getNextFamiliarity(currentFamiliarity, rating) {
 }
 
 function getNextReviewDate(familiarity, rating) {
-  // 簡化版間隔重複：越熟的字，下一次複習間隔越久。
   const intervals = {
     forgot: 0,
     unclear: Math.max(1, familiarity),
@@ -687,7 +691,7 @@ function getNextReviewDate(familiarity, rating) {
 }
 
 function resetProgress() {
-  const confirmed = window.confirm("確定要清除所有學習紀錄嗎？");
+  const confirmed = window.confirm("確定要重置本機學習紀錄嗎？");
 
   if (!confirmed) {
     return;
@@ -721,11 +725,7 @@ function updateRoundStatsView() {
   const remainingToFamiliar = Math.max(0, roundStats.totalCards - roundStats.familiarCount);
 
   practiceModeName.textContent = getPracticeModeLabel();
-  practiceWordbookName.textContent = currentPracticeMode === "mistakes"
-    ? "錯題本"
-    : currentPracticeMode === "daily"
-      ? "今日任務"
-      : selectedWordbook ? selectedWordbook.name : "尚未選擇";
+  practiceWordbookName.textContent = getPracticeWordbookLabel();
   roundTotalCount.textContent = roundStats.totalCards;
   roundKnownCount.textContent = roundStats.familiarCount;
   roundRemainingCount.textContent = remainingToFamiliar;
@@ -733,11 +733,18 @@ function updateRoundStatsView() {
   roundForgotCount.textContent = roundStats.forgotCount;
 }
 
-function showRoundComplete() {
+function renderPracticeComplete() {
+  const completeTitleText = getPracticeCompleteTitle();
+
   flashcard.hidden = true;
   answerActions.hidden = true;
+  flashcard.classList.add("is-hidden");
+  answerActions.classList.add("is-hidden");
+  flashcard.classList.remove("is-flipped");
   completeView.classList.add("is-visible");
-  cardProgress.textContent = "本輪完成";
+  cardProgress.textContent = completeTitleText;
+  completeTitle.textContent = completeTitleText;
+  completeMessage.textContent = "你已完成這次的單字複習";
   updateRoundStatsView();
 
   completeTotalCount.textContent = roundStats.totalCards;
@@ -749,6 +756,8 @@ function showRoundComplete() {
 function resetPracticeView() {
   flashcard.hidden = false;
   answerActions.hidden = false;
+  flashcard.classList.remove("is-hidden", "is-flipped");
+  answerActions.classList.remove("is-hidden");
   completeView.classList.remove("is-visible");
 }
 
@@ -769,6 +778,30 @@ function getPracticeModeLabel() {
   }
 
   return "一般練習";
+}
+
+function getPracticeWordbookLabel() {
+  if (currentPracticeMode === "daily") {
+    return "今日任務";
+  }
+
+  if (currentPracticeMode === "mistakes") {
+    return "錯題本";
+  }
+
+  return selectedWordbook ? selectedWordbook.name : "尚未選擇";
+}
+
+function getPracticeCompleteTitle() {
+  if (currentPracticeMode === "daily") {
+    return "今日任務完成";
+  }
+
+  if (currentPracticeMode === "mistakes") {
+    return "錯題本複習完成";
+  }
+
+  return "本輪練習完成";
 }
 
 function setStatusMessage(message, isError = false) {

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>英文單字卡練習</title>
+  <title>English Flashcards</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,11 +12,11 @@
       <div class="brand-lockup">
         <span class="brand-mark" aria-hidden="true">E</span>
         <div>
-        <p class="eyebrow">Premium Learning Dashboard</p>
-        <h1>English Flashcards</h1>
+          <p class="eyebrow">Premium Learning Dashboard</p>
+          <h1>English Flashcards</h1>
         </div>
       </div>
-      <button id="resetButton" class="icon-button" type="button" title="重置學習紀錄">重置</button>
+      <button id="resetButton" class="icon-button" type="button" title="重置本機學習紀錄">重置</button>
     </header>
 
     <section id="homeView" class="view is-active" aria-labelledby="homeTitle">
@@ -26,7 +26,7 @@
           <h2 id="homeTitle">每天 10 題，建立你的 TOEIC 單字力</h2>
           <p class="hero-copy">以 Anki 節奏安排今日任務、錯題與高頻單字，讓每一次複習都更精準。</p>
         </div>
-        <aside class="hero-action-card" aria-label="目前練習操作">
+        <aside class="hero-action-card" aria-label="主要練習操作">
           <span class="hero-card-label">目前單字本</span>
           <p id="selectedWordbookName" class="selected-wordbook-pill">請先選擇單字本</p>
           <div class="intro-actions">
@@ -41,19 +41,19 @@
           <span class="stat-icon" aria-hidden="true">01</span>
           <span class="stat-label">今日待複習</span>
           <strong id="dueCount">0</strong>
-          <p>今天建議優先處理的卡片</p>
+          <p>今天適合再次練習的單字數。</p>
         </article>
         <article class="stat-card">
           <span class="stat-icon" aria-hidden="true">02</span>
           <span class="stat-label">總單字數</span>
           <strong id="totalCount">0</strong>
-          <p>目前單字本內可練習字數</p>
+          <p>目前選擇單字本中的單字總量。</p>
         </article>
         <article class="stat-card">
           <span class="stat-icon" aria-hidden="true">03</span>
           <span class="stat-label">正確率</span>
           <strong id="accuracyRate">0%</strong>
-          <p>依本機學習紀錄估算</p>
+          <p>依照本機練習紀錄計算。</p>
         </article>
       </section>
 
@@ -68,15 +68,15 @@
         <div class="daily-task-list">
           <article>
             <strong>新單字 20 題</strong>
-            <span>目前單字本中尚未練過的單字</span>
+            <span>從目前單字本抽尚未練過的單字。</span>
           </article>
           <article>
             <strong>錯題 20 題</strong>
-            <span>最近標記為沒看過的單字</span>
+            <span>加強曾經沒看過的單字。</span>
           </article>
           <article>
             <strong>模糊 10 題</strong>
-            <span>最近標記為模糊的單字</span>
+            <span>複習曾經標記模糊的單字。</span>
           </article>
         </div>
         <button id="dailyTaskButton" class="primary-button" type="button" disabled>開始今日任務</button>
@@ -85,18 +85,18 @@
       <section class="wordbook-panel" aria-label="單字本列表">
         <div class="section-heading">
           <div>
-          <p class="eyebrow">Library</p>
-          <h3>單字本</h3>
+            <p class="eyebrow">Library</p>
+            <h3>單字本</h3>
           </div>
         </div>
         <div id="wordbookList" class="wordbook-list"></div>
       </section>
 
-      <section class="category-panel" aria-label="分類列表">
+      <section class="category-panel" aria-label="單字分類">
         <div class="section-heading">
           <div>
-          <p class="eyebrow">Categories</p>
-          <h3>目前單字本分類</h3>
+            <p class="eyebrow">Categories</p>
+            <h3>分類概覽</h3>
           </div>
         </div>
         <div id="categoryList" class="category-list"></div>
@@ -105,10 +105,10 @@
 
     <section id="practiceView" class="view" aria-labelledby="practiceTitle">
       <div class="practice-header">
-        <button id="backHomeButton" class="secondary-button" type="button">返回單字本列表</button>
+        <button id="backHomeButton" class="secondary-button" type="button">返回單字本</button>
         <div>
           <p id="cardProgress" class="eyebrow">本輪 10 題</p>
-          <h2 id="practiceTitle">練習單字卡</h2>
+          <h2 id="practiceTitle">單字練習</h2>
         </div>
       </div>
 
@@ -122,7 +122,7 @@
           <strong id="practiceWordbookName">尚未選擇</strong>
         </article>
         <article>
-          <span>本輪總題數</span>
+          <span>本輪題數</span>
           <strong id="roundTotalCount">0</strong>
         </article>
         <article>
@@ -148,7 +148,7 @@
           <article class="card-face card-front">
             <span id="wordCategory" class="category-pill">TOEIC</span>
             <h3 id="wordText">Vocabulary</h3>
-            <span class="tap-hint">點擊卡片查看解釋</span>
+            <span class="tap-hint">點擊卡片查看答案</span>
           </article>
 
           <article class="card-face card-back">
@@ -164,35 +164,40 @@
         </div>
       </button>
 
-      <div class="answer-actions" aria-label="練習操作">
+      <div class="answer-actions" aria-label="熟悉度選擇">
         <button class="rating-button is-low" type="button" data-rating="forgot">沒看過</button>
         <button class="rating-button is-mid" type="button" data-rating="unclear">模糊</button>
         <button class="rating-button is-high" type="button" data-rating="known">熟悉</button>
         <button id="nextButton" class="secondary-button" type="button">下一張</button>
       </div>
 
-      <section id="completeView" class="complete-panel" aria-label="本輪完成">
+      <section id="completeView" class="complete-panel" aria-label="練習完成">
         <p class="eyebrow">Round Complete</p>
-        <h2>本輪完成</h2>
+        <h2 id="completeTitle">本輪練習完成</h2>
+        <p id="completeMessage" class="complete-message">你已完成這次的單字複習</p>
         <div class="complete-stats">
           <article>
             <span>本輪題數</span>
             <strong id="completeTotalCount">0</strong>
           </article>
           <article>
-            <span>熟悉次數</span>
+            <span>已熟悉數</span>
             <strong id="completeKnownCount">0</strong>
           </article>
           <article>
-            <span>模糊次數</span>
+            <span>模糊數</span>
             <strong id="completeUnclearCount">0</strong>
           </article>
           <article>
-            <span>沒看過次數</span>
+            <span>沒看過數</span>
             <strong id="completeForgotCount">0</strong>
           </article>
         </div>
-        <button id="restartRoundButton" class="primary-button" type="button">再練 10 題</button>
+        <div class="complete-actions">
+          <button id="completeHomeButton" class="secondary-button" type="button">回到單字本</button>
+          <button id="restartRoundButton" class="primary-button" type="button">再練 10 題</button>
+          <button id="completeMistakeButton" class="secondary-button" type="button">練習錯題本</button>
+        </div>
       </section>
     </section>
   </main>
